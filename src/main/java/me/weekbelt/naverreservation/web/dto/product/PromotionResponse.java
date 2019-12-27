@@ -9,4 +9,8 @@ import java.util.List;
 public class PromotionResponse {
 
     List<PromotionDto> items;
+
+    public PromotionResponse(List<PromotionDto> items) {
+        this.items = items;
+    }
 }
