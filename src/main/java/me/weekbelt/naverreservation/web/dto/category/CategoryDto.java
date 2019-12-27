@@ -1,5 +1,6 @@
 package me.weekbelt.naverreservation.web.dto.category;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.category.Category;

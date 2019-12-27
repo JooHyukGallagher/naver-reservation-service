@@ -8,4 +8,8 @@ import java.util.List;
 @Getter @Setter
 public class CategoryResponse {
     List<CategoryDto> items;
+
+    public CategoryResponse(List<CategoryDto> items) {
+        this.items = items;
+    }
 }
