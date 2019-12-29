@@ -17,7 +17,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final DisplayInfoRepositoryImpl displayInfoRepository;
 
-    public List<CategoryDto> findCategoryDtos(){
+    public List<CategoryDto> findCategoryDto(){
         List<Category> categories = categoryRepository.findAll();
 
         return createCategoryDtos(categories);

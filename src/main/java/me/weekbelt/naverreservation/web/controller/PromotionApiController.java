@@ -16,6 +16,6 @@ public class PromotionApiController {
 
     @GetMapping("/promotions")
     private PromotionResponse getPromotionResponse(){
-        return new PromotionResponse(productService.findPromotion());
+        return new PromotionResponse(productService.findPromotionDto());
     }
 }

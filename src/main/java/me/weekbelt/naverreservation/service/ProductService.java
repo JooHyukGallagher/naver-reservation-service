@@ -25,7 +25,7 @@ public class ProductService {
     private final PromotionRepository promotionRepository;
     private final ProductPriceRepository productPriceRepository;
 
-    public List<PromotionDto> findPromotion(){
+    public List<PromotionDto> findPromotionDto(){
         List<Promotion> promotions = promotionRepository.findAll();
 
         List<PromotionDto> promotionDtos = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ProductService {
         return promotionDtos;
     }
 
-    public List<ProductDto> findDisplayInfoWithProduct(Long categoryId, Integer offset) {
+    public List<ProductDto> findProductDto(Long categoryId, Integer offset) {
         List<DisplayInfo> displayInfoList;
 
         if (categoryId == null || categoryId == 0) {
@@ -76,7 +76,7 @@ public class ProductService {
         return displayInfoRepositoryImpl.countDisplayInfoNumberByCategoryId(categoryId);
     }
 
-    public List<ProductImageDto> findProductImageDtosByProductId(Long productId, ImageType type) {
+    public List<ProductImageDto> findProductImageDto(Long productId, ImageType type) {
         List<ProductImage> productImages =  productImageRepository.findProductImageByProductIdAndType(productId, type);
 
         List<ProductImageDto> productImageDtos = new ArrayList<>();
@@ -88,7 +88,7 @@ public class ProductService {
         return productImageDtos;
     }
 
-    public List<ProductPriceDto> findProductPriceDtoByProductId(Long productId) {
+    public List<ProductPriceDto> findProductPriceDto(Long productId) {
         List<ProductPrice> productPrices = productPriceRepository.findProductPriceByProductIdOrderByIdDesc(productId);
 
         List<ProductPriceDto> productPriceDtos = new ArrayList<>();

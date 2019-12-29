@@ -30,25 +30,25 @@ public class ProductApiController {
     public ProductResponse getProductList(@RequestParam(defaultValue = "0") Long categoryId,
                                           @RequestParam(defaultValue = "0") Integer start){
 
-        List<ProductDto> productDtos = productService.findDisplayInfoWithProduct(categoryId, start);
+        List<ProductDto> items = productService.findProductDto(categoryId, start);
         Integer totalCount = productService.countProductNumByCategoryId(categoryId);
 
         return ProductResponse.builder()
-                .items(productDtos)
+                .items(items)
                 .totalCount(totalCount)
                 .build();
     }
 
     @GetMapping("/products/{displayInfoId}")
     public DisplayInfoResponse getDisplayInfoResponse(@PathVariable Long displayInfoId) {
-        DisplayInfoDto displayInfo = displayInfoService.getDisplayInfoDto(displayInfoId);
-        DisplayInfoImageDto displayInfoImage = displayInfoService.findDisplayInfoImageDtoByDisplayInfoId(displayInfoId);
+        DisplayInfoDto displayInfo = displayInfoService.findDisplayInfoDto(displayInfoId);
+        DisplayInfoImageDto displayInfoImage = displayInfoService.findDisplayInfoImageDTo(displayInfoId);
 
         Long productId = displayInfo.getProductId();
-        List<ProductImageDto> productImages = productService.findProductImageDtosByProductId(productId, ImageType.ma);
-        List<CommentDto> comments = reservationService.findCommentDtosByProductId(productId);
-        List<ProductPriceDto> productPrices = productService.findProductPriceDtoByProductId(productId);
-        Double averageScore = reservationService.findAverageScoreByProductId(productId);
+        List<ProductImageDto> productImages = productService.findProductImageDto(productId, ImageType.ma);
+        List<CommentDto> comments = reservationService.findCommentDto(productId);
+        List<ProductPriceDto> productPrices = productService.findProductPriceDto(productId);
+        Double averageScore = reservationService.findAverageScore(productId);
 
         return DisplayInfoResponse.builder()
                 .displayInfo(displayInfo)

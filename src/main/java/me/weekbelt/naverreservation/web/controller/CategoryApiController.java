@@ -16,6 +16,6 @@ public class CategoryApiController {
 
     @GetMapping("/categories")
     public CategoryResponse getCategoryResponse() {
-        return new CategoryResponse(categoryService.findCategoryDtos());
+        return new CategoryResponse(categoryService.findCategoryDto());
     }
 }

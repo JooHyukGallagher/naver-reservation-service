@@ -15,7 +15,7 @@ public class ReservationService {
 
     private final ReservationUserCommentRepository reservationUserCommentRepository;
 
-    public List<CommentDto> findCommentDtosByProductId(Long productId) {
+    public List<CommentDto> findCommentDto(Long productId) {
         List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
 
         List<CommentDto> commentDtos = new ArrayList<>();
@@ -27,7 +27,7 @@ public class ReservationService {
         return commentDtos;
     }
 
-    public Double findAverageScoreByProductId(Long productId) {
+    public Double findAverageScore(Long productId) {
         double averageScore = 0.0;
 
         List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
