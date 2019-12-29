@@ -1,13 +1,17 @@
 package me.weekbelt.naverreservation.web.dto.display;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductPriceDto;
 
 import java.util.List;
 
-@Data
+@Getter
+@Builder
 public class DisplayInfoResponse {
     private DisplayInfoDto displayInfo;
     private List<ProductImageDto> productImages;

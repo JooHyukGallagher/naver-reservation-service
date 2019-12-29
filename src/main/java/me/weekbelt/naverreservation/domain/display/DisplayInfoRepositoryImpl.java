@@ -49,4 +49,13 @@ public class DisplayInfoRepositoryImpl {
                 .setParameter("categoryId", categoryId)
                 .getResultList().size();
     }
+//
+//    public List<DisplayInfo> findDisplayInfoWithProductAndCategoryByDisplayInfoId(Long displayInfoId) {
+//        return em.createQuery("select di from DisplayInfo di" +
+//                " join fetch di.product p" +
+//                " join fetch p.category c" +
+//                " where di.id = :displayInfoId")
+//                .setParameter("displayInfoId", displayInfoId)
+//                .getResultList();
+//    }
 }

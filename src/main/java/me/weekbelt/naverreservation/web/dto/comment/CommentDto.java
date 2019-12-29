@@ -48,17 +48,17 @@ public class CommentDto {
 
         List<ReservationUserCommentImage> reservationUserCommentImages = reservationUserComment.getReservationUserCommentImages();
         if (reservationUserCommentImages != null) {
-            setReservationUserCommentImages(reservationUserCommentImages);
+            this.commentImages = setReservationUserCommentImages(reservationUserCommentImages);
         }
     }
 
-    private void setReservationUserCommentImages(List<ReservationUserCommentImage> reservationUserCommentImages) {
+    private List<CommentImageDto> setReservationUserCommentImages(List<ReservationUserCommentImage> reservationUserCommentImages) {
         List<CommentImageDto> commentImageDtos = new ArrayList<>();
         for (ReservationUserCommentImage reservationUserCommentImage : reservationUserCommentImages) {
             CommentImageDto commentImageDto = new CommentImageDto(reservationUserCommentImage);
             commentImageDtos.add(commentImageDto);
         }
 
-        commentImages = commentImageDtos;
+        return commentImageDtos;
     }
 }

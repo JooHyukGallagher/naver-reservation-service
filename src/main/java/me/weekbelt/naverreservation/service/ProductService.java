@@ -4,11 +4,10 @@ import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 import me.weekbelt.naverreservation.domain.display.DisplayInfoRepositoryImpl;
-import me.weekbelt.naverreservation.domain.product.ProductImage;
-import me.weekbelt.naverreservation.domain.product.ProductImageRepositoryImpl;
-import me.weekbelt.naverreservation.domain.product.Promotion;
-import me.weekbelt.naverreservation.domain.product.PromotionRepository;
+import me.weekbelt.naverreservation.domain.product.*;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
+import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
+import me.weekbelt.naverreservation.web.dto.product.ProductPriceDto;
 import me.weekbelt.naverreservation.web.dto.product.PromotionDto;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,10 @@ public class ProductService {
 
     private final static Integer LIMIT = 4;
 
-    private final DisplayInfoRepositoryImpl displayInfoRepository;
-    private final ProductImageRepositoryImpl productImageRepository;
+    private final DisplayInfoRepositoryImpl displayInfoRepositoryImpl;
+    private final ProductImageRepository productImageRepository;
     private final PromotionRepository promotionRepository;
+    private final ProductPriceRepository productPriceRepository;
 
     public List<PromotionDto> findPromotion(){
         List<Promotion> promotions = promotionRepository.findAll();
@@ -44,9 +44,9 @@ public class ProductService {
         List<DisplayInfo> displayInfoList;
 
         if (categoryId == null || categoryId == 0) {
-            displayInfoList = displayInfoRepository.findDisplayInfoWithProduct(offset, LIMIT);
+            displayInfoList = displayInfoRepositoryImpl.findDisplayInfoWithProduct(offset, LIMIT);
         } else {
-            displayInfoList = displayInfoRepository.findDisplayInfoWithProductByCategoryId(categoryId, offset, LIMIT);
+            displayInfoList = displayInfoRepositoryImpl.findDisplayInfoWithProductByCategoryId(categoryId, offset, LIMIT);
         }
 
         return createProductDtos(displayInfoList);
@@ -65,14 +65,38 @@ public class ProductService {
     }
 
     private String getSaveFileNameByProductId(Long productId) {
-        ProductImage productImage = productImageRepository.getProductImageByProductId(productId, ImageType.th).get(0);
+        ProductImage productImage = productImageRepository.findProductImageByProductIdAndType(productId, ImageType.th).get(0);
         return productImage.getFileInfo().getSaveFileName();
     }
 
     public Integer countProductNumByCategoryId(Long categoryId){
         if (categoryId == null || categoryId == 0) {
-            return displayInfoRepository.countDisplayInfoNumber();
+            return displayInfoRepositoryImpl.countDisplayInfoNumber();
         }
-        return displayInfoRepository.countDisplayInfoNumberByCategoryId(categoryId);
+        return displayInfoRepositoryImpl.countDisplayInfoNumberByCategoryId(categoryId);
+    }
+
+    public List<ProductImageDto> findProductImageDtosByProductId(Long productId, ImageType type) {
+        List<ProductImage> productImages =  productImageRepository.findProductImageByProductIdAndType(productId, type);
+
+        List<ProductImageDto> productImageDtos = new ArrayList<>();
+        for (ProductImage productImage : productImages) {
+            ProductImageDto productImageDto = new ProductImageDto(productImage);
+            productImageDtos.add(productImageDto);
+        }
+
+        return productImageDtos;
+    }
+
+    public List<ProductPriceDto> findProductPriceDtoByProductId(Long productId) {
+        List<ProductPrice> productPrices = productPriceRepository.findProductPriceByProductIdOrderByIdDesc(productId);
+
+        List<ProductPriceDto> productPriceDtos = new ArrayList<>();
+        for (ProductPrice productPrice : productPrices) {
+            ProductPriceDto productPriceDto = new ProductPriceDto(productPrice);
+            productPriceDtos.add(productPriceDto);
+        }
+
+        return productPriceDtos;
     }
 }
