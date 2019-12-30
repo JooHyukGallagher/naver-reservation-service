@@ -3,6 +3,7 @@ package me.weekbelt.naverreservation.service;
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
+import me.weekbelt.naverreservation.domain.display.DisplayInfoRepository;
 import me.weekbelt.naverreservation.domain.display.DisplayInfoRepositoryImpl;
 import me.weekbelt.naverreservation.domain.product.*;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
@@ -20,7 +21,7 @@ public class ProductService {
 
     private final static Integer LIMIT = 4;
 
-    private final DisplayInfoRepositoryImpl displayInfoRepositoryImpl;
+    private final DisplayInfoRepository displayInfoRepositoryImpl;
     private final ProductImageRepository productImageRepository;
     private final PromotionRepository promotionRepository;
     private final ProductPriceRepository productPriceRepository;

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class FileInfo extends BaseEntity{
+public class FileInfo extends BaseTimeEntity {
 
     @Id @GeneratedValue
     private Long id;

@@ -2,7 +2,7 @@ package me.weekbelt.naverreservation.domain.reservation;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.weekbelt.naverreservation.domain.BaseEntity;
+import me.weekbelt.naverreservation.domain.BaseTimeEntity;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 import me.weekbelt.naverreservation.domain.product.Product;
 import org.hibernate.annotations.ColumnDefault;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class ReservationInfo extends BaseEntity {
+public class ReservationInfo extends BaseTimeEntity {
 
     @Id @GeneratedValue
     private Long id;

@@ -3,6 +3,7 @@ package me.weekbelt.naverreservation.service;
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.category.Category;
 import me.weekbelt.naverreservation.domain.category.CategoryRepository;
+import me.weekbelt.naverreservation.domain.display.DisplayInfoRepository;
 import me.weekbelt.naverreservation.domain.display.DisplayInfoRepositoryImpl;
 import me.weekbelt.naverreservation.web.dto.category.CategoryDto;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
-    private final DisplayInfoRepositoryImpl displayInfoRepository;
+    private final DisplayInfoRepository displayInfoRepository;
 
     public List<CategoryDto> findCategoryDto(){
         List<Category> categories = categoryRepository.findAll();

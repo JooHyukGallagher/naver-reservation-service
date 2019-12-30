@@ -8,10 +8,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
-public class DisplayInfoRepositoryImpl {
+public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom{
 
     private final EntityManager em;
 
+    @Override
     public List<DisplayInfo> findDisplayInfoWithProduct(Integer start, Integer limit) {
         return em.createQuery("select di from DisplayInfo di" +
                 " join fetch di.product p" +
@@ -21,6 +22,7 @@ public class DisplayInfoRepositoryImpl {
                 .getResultList();
     }
 
+    @Override
     public List<DisplayInfo> findDisplayInfoWithProductByCategoryId(Long categoryId, Integer start, Integer limit) {
         return em.createQuery("select di from DisplayInfo di" +
                 " join fetch di.product p" +
@@ -32,6 +34,7 @@ public class DisplayInfoRepositoryImpl {
                 .getResultList();
     }
 
+    @Override
     public Integer countDisplayInfoNumber() {
         return em.createQuery(
                 "select di from DisplayInfo di" +
@@ -40,6 +43,7 @@ public class DisplayInfoRepositoryImpl {
                 .getResultList().size();
     }
 
+    @Override
     public Integer countDisplayInfoNumberByCategoryId(Long categoryId) {
         return em.createQuery(
                 "select di from DisplayInfo di" +
@@ -49,13 +53,4 @@ public class DisplayInfoRepositoryImpl {
                 .setParameter("categoryId", categoryId)
                 .getResultList().size();
     }
-//
-//    public List<DisplayInfo> findDisplayInfoWithProductAndCategoryByDisplayInfoId(Long displayInfoId) {
-//        return em.createQuery("select di from DisplayInfo di" +
-//                " join fetch di.product p" +
-//                " join fetch p.category c" +
-//                " where di.id = :displayInfoId")
-//                .setParameter("displayInfoId", displayInfoId)
-//                .getResultList();
-//    }
 }

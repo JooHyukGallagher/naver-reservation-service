@@ -2,7 +2,7 @@ package me.weekbelt.naverreservation.domain.reservation;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.weekbelt.naverreservation.domain.BaseEntity;
+import me.weekbelt.naverreservation.domain.BaseTimeEntity;
 import me.weekbelt.naverreservation.domain.product.Product;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class ReservationUserComment extends BaseEntity {
+public class ReservationUserComment extends BaseTimeEntity {
 
     @Id @GeneratedValue
     private Long id;

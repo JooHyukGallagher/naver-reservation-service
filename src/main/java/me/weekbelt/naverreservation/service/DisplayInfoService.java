@@ -17,7 +17,7 @@ public class DisplayInfoService {
     private final DisplayInfoImageRepository displayInfoImageRepository;
 
     public DisplayInfoDto findDisplayInfoDto(Long displayInfoId) {
-        DisplayInfo displayInfo = displayInfoRepository.findDisplayInfoWithProductAndCategoryByDisplayInfoId(displayInfoId)
+        DisplayInfo displayInfo = displayInfoRepository.findDisplayInfoByDisplayInfoId(displayInfoId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 전시정보가 없습니다. id=" + displayInfoId));
         return new DisplayInfoDto(displayInfo);
     }
