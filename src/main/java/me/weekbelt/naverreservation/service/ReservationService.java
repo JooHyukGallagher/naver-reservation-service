@@ -6,8 +6,8 @@ import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentRep
 import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -18,13 +18,9 @@ public class ReservationService {
     public List<CommentDto> findCommentDto(Long productId) {
         List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
 
-        List<CommentDto> commentDtos = new ArrayList<>();
-        for (ReservationUserComment reservationUserComment : reservationUserComments) {
-            CommentDto commentDto = new CommentDto(reservationUserComment);
-            commentDtos.add(commentDto);
-        }
-
-        return commentDtos;
+        return reservationUserComments.stream()
+                .map(CommentDto::new)
+                .collect(Collectors.toList());
     }
 
     public Double findAverageScore(Long productId) {
