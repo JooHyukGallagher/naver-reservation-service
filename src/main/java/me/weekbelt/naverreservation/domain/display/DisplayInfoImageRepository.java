@@ -13,5 +13,4 @@ public interface DisplayInfoImageRepository extends JpaRepository<DisplayInfoIma
             " join fetch dim.displayInfo di" +
             " where di.id = :displayInfoId")
     Optional<DisplayInfoImage> findDisplayInfoImageByDisplayInfoId(@Param("displayInfoId") Long displayInfoId);
-
 }
