@@ -1,6 +1,8 @@
 package me.weekbelt.naverreservation.domain.reservation;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.BaseTimeEntity;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
@@ -12,8 +14,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
-@Getter @Setter
+@Getter
 public class ReservationInfo extends BaseTimeEntity {
 
     @Id @GeneratedValue
@@ -33,6 +36,9 @@ public class ReservationInfo extends BaseTimeEntity {
     @OneToMany(mappedBy = "reservationInfo")
     private List<ReservationUserCommentImage> reservationUserCommentImages = new ArrayList<>();
 
+    @OneToMany(mappedBy = "reservationInfo")
+    private List<ReservationInfoPrice> reservationInfoPrices = new ArrayList<>();
+
     @Column(nullable = false)
     private String reservationName;
 
@@ -48,4 +54,17 @@ public class ReservationInfo extends BaseTimeEntity {
     @Column(nullable = false)
     @ColumnDefault("false")
     private boolean cancelFlag;
+
+    @Builder
+    public ReservationInfo(Product product, DisplayInfo displayInfo,
+                           String reservationName, String reservationTel,
+                           String reservationEmail, LocalDateTime reservationDate) {
+        this.product = product;
+        this.displayInfo = displayInfo;
+        this.reservationName = reservationName;
+        this.reservationTel = reservationTel;
+        this.reservationEmail = reservationEmail;
+        this.reservationDate = reservationDate;
+    }
+
 }

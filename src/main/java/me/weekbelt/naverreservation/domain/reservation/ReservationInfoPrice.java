@@ -1,13 +1,16 @@
 package me.weekbelt.naverreservation.domain.reservation;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.product.ProductPrice;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
+@Getter
 @Entity
-@Getter @Setter
 public class ReservationInfoPrice {
 
     @Id @GeneratedValue
@@ -22,4 +25,12 @@ public class ReservationInfoPrice {
     private ReservationInfo reservationInfo;
 
     private int count;
+
+    @Builder
+    public ReservationInfoPrice(ProductPrice productPrice, ReservationInfo reservationInfo, Integer count) {
+        this.productPrice = productPrice;
+        this.reservationInfo = reservationInfo;
+        this.count = count;
+    }
+
 }

@@ -4,10 +4,9 @@ import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.service.ReservationService;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationInfoDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationInfoResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
+import me.weekbelt.naverreservation.web.dto.reservation.ReservationResponse;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +25,11 @@ public class ReservationApiController {
                 .reservations(reservations)
                 .size(reservations.size())
                 .build();
+    }
+
+    @PostMapping("/reservations")
+    public ReservationResponse createReservation(@RequestBody ReservationParam reservationParam){
+        reservationService.saveReservation(reservationParam);
+        return new ReservationResponse();
     }
 }

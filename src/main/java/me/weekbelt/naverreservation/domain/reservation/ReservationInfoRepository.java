@@ -14,4 +14,5 @@ public interface ReservationInfoRepository extends JpaRepository<ReservationInfo
             " join fetch p.category c" +
             " where ri.reservationEmail = :reservationEmail")
     List<ReservationInfo> findReservationInfoByReservationEmail(@Param("reservationEmail") String reservationEmail);
+
 }
