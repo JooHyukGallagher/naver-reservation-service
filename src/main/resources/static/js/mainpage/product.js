@@ -1,0 +1,5 @@
+function Product() {
+}
+
+Product.prototype = {
+};

@@ -1,0 +1,44 @@
+package me.weekbelt.naverreservation.web.dto.reservation;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import me.weekbelt.naverreservation.domain.FileInfo;
+import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
+
+import java.time.LocalDateTime;
+
+@NoArgsConstructor
+@Getter
+public class ReservationCommentImageDto {
+
+    // reservation_user_comment_image 테이블
+    private Long imageId;
+    private Long reservationInfoId;
+    private Long reservationUserCommentId;
+
+    // file_info 테이블
+    private Long fileId;
+    private String fileName;
+    private String saveFileName;
+    private String contentType;
+    private boolean deleteFlag;
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+
+    public ReservationCommentImageDto(ReservationUserCommentImage reservationUserCommentImage) {
+        this.imageId = reservationUserCommentImage.getId();
+        this.reservationInfoId = reservationUserCommentImage.getReservationInfo().getId();
+        this.reservationUserCommentId = getReservationUserCommentId();
+
+        FileInfo fileInfo = reservationUserCommentImage.getFileInfo();
+        if (fileInfo != null){
+            this.fileId = fileInfo.getId();
+            this.fileName = fileInfo.getFileName();
+            this.saveFileName = fileInfo.getSaveFileName();
+            this.contentType = fileInfo.getContentType();
+            this.deleteFlag = fileInfo.isDeleteFlag();
+            this.createDate = fileInfo.getCreateDate();
+            this.modifyDate = fileInfo.getModifyDate();
+        }
+    }
+}
