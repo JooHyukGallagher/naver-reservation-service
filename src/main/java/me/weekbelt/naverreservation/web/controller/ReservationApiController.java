@@ -8,6 +8,7 @@ import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationResponse;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,5 +32,15 @@ public class ReservationApiController {
     public ReservationResponse createReservation(@RequestBody ReservationParam reservationParam){
         reservationService.saveReservation(reservationParam);
         return new ReservationResponse();
+    }
+
+    @GetMapping("/timenow")
+    public String getTime() {
+        int randomValue = (int) (Math.random() * 5);
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDateTime addedLocalDateTime = localDateTime.plusDays(randomValue);
+
+        return addedLocalDateTime.toString();
     }
 }
