@@ -15,6 +15,7 @@ import me.weekbelt.naverreservation.web.dto.product.ProductPriceDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductResponse;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class ProductApiController {
     }
 
     @GetMapping("/products/{displayInfoId}")
-    public DisplayInfoResponse getDisplayInfoResponse(@PathVariable Long displayInfoId) {
+    public DisplayInfoResponse getDisplayInfoResponse(@PathVariable Long displayInfoId, HttpSession httpSession) {
         DisplayInfoDto displayInfo = displayInfoService.findDisplayInfoDto(displayInfoId);
         DisplayInfoImageDto displayInfoImage = displayInfoService.findDisplayInfoImageDTo(displayInfoId);
 
@@ -50,7 +51,7 @@ public class ProductApiController {
         List<ProductPriceDto> productPrices = productService.findProductPriceDto(productId);
         Double averageScore = reservationService.findAverageScore(productId);
 
-        return DisplayInfoResponse.builder()
+        DisplayInfoResponse displayInfoResponse = DisplayInfoResponse.builder()
                 .displayInfo(displayInfo)
                 .displayInfoImage(displayInfoImage)
                 .productImages(productImages)
@@ -58,5 +59,9 @@ public class ProductApiController {
                 .productPrices(productPrices)
                 .averageScore(averageScore)
                 .build();
+
+        httpSession.setAttribute("displayInfoResponse", displayInfoResponse);
+
+        return displayInfoResponse;
     }
 }
