@@ -84,6 +84,7 @@ public class ReservationService {
                 .productId(reservationInfo.getProduct().getId())
                 .displayInfoId(reservationInfo.getDisplayInfo().getId())
                 .reservationName(reservationInfo.getReservationName())
+                .reservationTelephone(reservationInfo.getReservationTel())
                 .reservationEmail(reservationInfo.getReservationEmail())
                 .cancelYn(reservationInfo.isCancelFlag())
                 .reservationDate(TimeUtil.convertLocalDateTimeToString(reservationInfo.getReservationDate()))
@@ -136,7 +137,8 @@ public class ReservationService {
 
         // 예약 정보 & 가격 저장
         List<ReservationInfoPrice> result =  reservationInfoPriceRepository.saveAll(reservationInfoPrices);
-        return result.get(0).getReservationInfo().getId();
+
+        return reservationInfo.getId();
     }
 
 }

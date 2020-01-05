@@ -32,13 +32,13 @@ public class ReservationInfo extends BaseTimeEntity {
     @JoinColumn(name = "display_info_id")
     private DisplayInfo displayInfo;
 
-    @OneToMany(mappedBy = "reservationInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservationInfo")
     private List<ReservationUserComment> reservationUserComments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "reservationInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservationInfo")
     private List<ReservationUserCommentImage> reservationUserCommentImages = new ArrayList<>();
 
-    @OneToMany(mappedBy = "reservationInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservationInfo")
     private List<ReservationInfoPrice> reservationInfoPrices = new ArrayList<>();
 
     @Column(nullable = false)

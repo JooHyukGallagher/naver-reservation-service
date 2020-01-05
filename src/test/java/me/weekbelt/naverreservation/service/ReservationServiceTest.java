@@ -1,18 +1,18 @@
 package me.weekbelt.naverreservation.service;
 
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfoPrice;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationPriceDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class ReservationServiceTest {
 
     @Autowired ReservationService reservationService;
@@ -46,7 +46,7 @@ class ReservationServiceTest {
                 .reservationName("김주혁")
                 .reservationTelephone("010-2727-2074")
                 .reservationEmail("vfrvfr4207@hanmail.net")
-                .reservationYearMonthDay("2020-01-03")
+                .reservationYearMonthDay("2020-01-03T18:07:44.048")
                 .prices(reservationPriceDtoList)
                 .build();
 
@@ -57,17 +57,19 @@ class ReservationServiceTest {
 
         List<ReservationPriceDto> reservationPriceDtos = reservationResponse.getPrices();
 
-        //then
+
+
+        // 반대
         assertThat(reservationResponse.getReservationInfoId()).isEqualTo(reservationInfoId);
-        assertThat(reservationResponse.getProductId()).isEqualTo(reservationParam.getProductId());
-        assertThat(reservationResponse.getDisplayInfoId()).isEqualTo(reservationParam.getDisplayInfoId());
+        assertThat(reservationParam.getProductId()).isEqualTo(reservationResponse.getProductId());
+        assertThat(reservationParam.getDisplayInfoId()).isEqualTo(reservationResponse.getDisplayInfoId());
 
-        assertThat((reservationResponse.getReservationName())).isEqualTo(reservationParam.getReservationName());
-        assertThat((reservationResponse.getReservationTelephone())).isEqualTo(reservationParam.getReservationTelephone());
-        assertThat((reservationResponse.getReservationEmail())).isEqualTo(reservationParam.getReservationEmail());
-        assertThat((reservationResponse.getReservationDate())).isEqualTo(reservationParam.getReservationYearMonthDay());
-        assertThat((reservationResponse.isCancelYn())).isEqualTo(false);
+        assertThat((reservationParam.getReservationName())).isEqualTo(reservationResponse.getReservationName());
+        assertThat((reservationParam.getReservationTelephone())).isEqualTo(reservationResponse.getReservationTelephone());
+        assertThat((reservationParam.getReservationEmail())).isEqualTo(reservationResponse.getReservationEmail());
+        assertThat(("2020-01-03")).isEqualTo(reservationResponse.getReservationDate());
+        assertThat((false)).isEqualTo(reservationResponse.isCancelYn());
 
-        assertThat(3).isEqualTo(reservationPriceDtos.size());
+        assertThat(reservationPriceDtos.size()).isEqualTo(3);
     }
 }
