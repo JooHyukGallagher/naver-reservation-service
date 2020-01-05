@@ -2,9 +2,11 @@ package me.weekbelt.naverreservation.web.dto.reservation;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 public class ReservationParam {
 
@@ -28,4 +30,5 @@ public class ReservationParam {
         this.reservationYearMonthDay = reservationYearMonthDay;
         this.prices = prices;
     }
+
 }

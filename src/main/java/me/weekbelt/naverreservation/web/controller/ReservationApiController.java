@@ -30,8 +30,8 @@ public class ReservationApiController {
 
     @PostMapping("/reservations")
     public ReservationResponse createReservation(@RequestBody ReservationParam reservationParam){
-        reservationService.saveReservation(reservationParam);
-        return new ReservationResponse();
+        Long reservationInfoId = reservationService.reservation(reservationParam);
+        return reservationService.findReservationResponse(reservationInfoId);
     }
 
     @GetMapping("/timenow")

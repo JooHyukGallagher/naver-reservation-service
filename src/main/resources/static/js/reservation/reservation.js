@@ -93,7 +93,7 @@ const registPostRequestEvent = (displayInfo, ticketInfoData) => {
             const reservationParamObj = new ReservationParam();
             const reservationParam = reservationParamObj.makeReservationParam(displayInfo);
 
-            console.log(reservationParam);
+            // console.log(reservationParam);
             reservationParamObj.requestReservationParam(reservationParam);
         }
     });

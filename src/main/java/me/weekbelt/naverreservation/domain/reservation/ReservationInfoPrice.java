@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.product.ProductPrice;
+import me.weekbelt.naverreservation.web.dto.reservation.ReservationPriceDto;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -33,4 +35,9 @@ public class ReservationInfoPrice {
         this.count = count;
     }
 
+    //== 연관관계 메서드==//
+    public void setReservationInfo(ReservationInfo reservationInfo){
+        this.reservationInfo = reservationInfo;
+        reservationInfo.getReservationInfoPrices().add(this);
+    }
 }

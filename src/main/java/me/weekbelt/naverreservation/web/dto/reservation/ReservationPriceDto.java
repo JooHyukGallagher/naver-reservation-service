@@ -3,8 +3,6 @@ package me.weekbelt.naverreservation.web.dto.reservation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.weekbelt.naverreservation.domain.product.ProductPrice;
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfoPrice;
 
 @Getter
 @NoArgsConstructor
@@ -22,4 +20,5 @@ public class ReservationPriceDto {
         this.reservationInfoId = reservationInfoId;
         this.count = count;
     }
+
 }
