@@ -34,6 +34,12 @@ public class ReservationApiController {
         return reservationService.findReservationResponse(reservationInfoId);
     }
 
+    @PutMapping("/reservations/{reservationInfoId}")
+    public ReservationResponse cancelReservation(@PathVariable Long reservationInfoId){
+        reservationService.cancelReservation(reservationInfoId);
+        return reservationService.findReservationResponse(reservationInfoId);
+    }
+
     @GetMapping("/timenow")
     public String getTime() {
         int randomValue = (int) (Math.random() * 5);

@@ -69,6 +69,7 @@ public class ReservationInfo extends BaseTimeEntity {
         this.reservationDate = reservationDate;
     }
 
+    //== 생성 메서드==//
     public static ReservationInfo createReservationInfo(ReservationParam reservationParam, Product product, DisplayInfo displayInfo) {
         return ReservationInfo.builder()
                 .product(product)
@@ -78,5 +79,10 @@ public class ReservationInfo extends BaseTimeEntity {
                 .reservationEmail(reservationParam.getReservationEmail())
                 .reservationDate(TimeUtil.convertStringToLocalDateTime(reservationParam.getReservationYearMonthDay()))
                 .build();
+    }
+
+    //== 비즈니스 로직 메서드==//
+    public void cancelReservation() {
+        this.cancelFlag = true;
     }
 }

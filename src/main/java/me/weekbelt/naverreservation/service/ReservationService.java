@@ -141,4 +141,10 @@ public class ReservationService {
         return reservationInfo.getId();
     }
 
+    @Transactional
+    public void cancelReservation(Long reservationInfoId) {
+        ReservationInfo reservationInfo = reservationInfoRepository.findById(reservationInfoId)
+                .orElseThrow(() -> new IllegalArgumentException("예약정보가 없습니다. reservationInfoId=" + reservationInfoId));
+        reservationInfo.cancelReservation();
+    }
 }
