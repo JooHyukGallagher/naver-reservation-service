@@ -44,7 +44,7 @@ public class ReservationApiController {
         return reservationService.findReservationResponse(reservationInfoId);
     }
 
-    @PostMapping("/reservation/{reservationInfoId}/comments")
+    @PostMapping("/reservations/{reservationInfoId}/comments")
     public CommentResponse createComment(@PathVariable Long reservationInfoId,
                                          @RequestParam(required = false) MultipartFile commentImage,
                                          @RequestParam String comment,

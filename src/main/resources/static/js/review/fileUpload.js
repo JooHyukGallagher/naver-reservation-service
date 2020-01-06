@@ -37,7 +37,6 @@ FileUpload.prototype = {
         const formData = new FormData();
         formData.append("commentReviewImage", file);
 
-        // requestFileUpload("POST", url, formData, null);
         fileUpload(url, formData);
     },
     redirectReservationListPage: function () {
