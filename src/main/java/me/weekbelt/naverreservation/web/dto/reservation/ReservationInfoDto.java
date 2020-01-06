@@ -5,7 +5,6 @@ import me.weekbelt.naverreservation.domain.reservation.ReservationInfo;
 import me.weekbelt.naverreservation.web.dto.display.DisplayInfoDto;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Getter
 public class ReservationInfoDto {
@@ -38,10 +37,6 @@ public class ReservationInfoDto {
         this.modifyDate = reservationInfo.getModifyDate();
         this.displayInfo = new DisplayInfoDto(reservationInfo.getDisplayInfo());
     }
-
-//    public String createReservationDate(LocalDateTime reservationDate) {
-//        return reservationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//    }
 
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;

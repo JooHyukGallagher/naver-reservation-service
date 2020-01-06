@@ -66,6 +66,12 @@ public class ReservationService {
                 .collect(Collectors.toList());
     }
 
+    public ReservationInfoDto findReservationInfoDto(Long reservationInfoId) {
+        ReservationInfo reservationInfo = reservationInfoRepository.findReservationInfoByReservationInfoId(reservationInfoId);
+
+        return new ReservationInfoDto(reservationInfo);
+    }
+
     public ReservationResponse findReservationResponse(Long reservationInfoId) {
         ReservationInfo reservationInfo = reservationInfoRepository.findById(reservationInfoId)
                 .orElseThrow(() -> new IllegalArgumentException("예약정보가 없습니다. reservationInfoId=" + reservationInfoId));

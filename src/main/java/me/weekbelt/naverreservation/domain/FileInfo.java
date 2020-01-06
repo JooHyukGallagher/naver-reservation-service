@@ -1,17 +1,21 @@
 package me.weekbelt.naverreservation.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.display.DisplayInfoImage;
 import me.weekbelt.naverreservation.domain.product.ProductImage;
 import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
-@Getter @Setter
+@Getter
 public class FileInfo extends BaseTimeEntity {
 
     @Id @GeneratedValue
@@ -36,5 +40,14 @@ public class FileInfo extends BaseTimeEntity {
     private String contentType;
 
     @Column(nullable = false)
+    @ColumnDefault("false")
     private boolean deleteFlag;
+
+    @Builder
+    public FileInfo(String fileName, String saveFileName, String contentType, boolean deleteFlag) {
+        this.fileName = fileName;
+        this.saveFileName = saveFileName;
+        this.contentType = contentType;
+        this.deleteFlag = deleteFlag;
+    }
 }

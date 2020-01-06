@@ -1,6 +1,8 @@
 package me.weekbelt.naverreservation.domain.reservation;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.BaseTimeEntity;
 import me.weekbelt.naverreservation.domain.product.Product;
@@ -9,6 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
 @Getter @Setter
 public class ReservationUserComment extends BaseTimeEntity {
@@ -32,4 +35,14 @@ public class ReservationUserComment extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String comment;
+
+    @Builder
+    public ReservationUserComment(Product product, ReservationInfo reservationInfo, double score, String comment) {
+        this.product = product;
+        this.reservationInfo = reservationInfo;
+        this.score = score;
+        this.comment = comment;
+    }
+
+
 }
