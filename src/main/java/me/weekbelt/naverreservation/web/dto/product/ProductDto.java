@@ -10,11 +10,11 @@ import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 public class ProductDto {
     // display_info 테이블
     private Long displayInfoId;
+    private Long productId;
+    private String placeName;
 
     // product 테이블
-    private Long productId;
     private String productDescription;
-    private String placeName;
     private String productContent;
 
     // file_info 테이블

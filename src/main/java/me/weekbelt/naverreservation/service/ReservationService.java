@@ -125,7 +125,16 @@ public class ReservationService {
         ReservationInfo reservationInfo = ReservationInfo.createReservationInfo(reservationParam, product, displayInfo);
 
         // ReservationInfoPrice 생성
-        List<ReservationInfoPrice> reservationInfoPrices = reservationParam.getPrices().stream()
+        List<ReservationInfoPrice> reservationInfoPrices = createReservationInfoPrice(reservationParam, reservationInfo);
+
+        // 예약 정보 & 가격 저장
+        reservationInfoPriceRepository.saveAll(reservationInfoPrices);
+
+        return reservationInfo.getId();
+    }
+
+    private List<ReservationInfoPrice> createReservationInfoPrice(ReservationParam reservationParam, ReservationInfo reservationInfo){
+        return reservationParam.getPrices().stream()
                 .map((reservationPriceDto) -> {
                     ProductPrice productPrice = productPriceRepository.findById(reservationPriceDto.getProductPriceId())
                             .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
@@ -140,11 +149,6 @@ public class ReservationService {
                     return reservationInfoPrice;
                 })
                 .collect(Collectors.toList());
-
-        // 예약 정보 & 가격 저장
-        List<ReservationInfoPrice> result =  reservationInfoPriceRepository.saveAll(reservationInfoPrices);
-
-        return reservationInfo.getId();
     }
 
     @Transactional
