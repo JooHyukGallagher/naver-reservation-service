@@ -8,6 +8,7 @@ import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentIma
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class CommentDto {
@@ -53,12 +54,9 @@ public class CommentDto {
     }
 
     private List<CommentImageDto> setReservationUserCommentImages(List<ReservationUserCommentImage> reservationUserCommentImages) {
-        List<CommentImageDto> commentImageDtos = new ArrayList<>();
-        for (ReservationUserCommentImage reservationUserCommentImage : reservationUserCommentImages) {
-            CommentImageDto commentImageDto = new CommentImageDto(reservationUserCommentImage);
-            commentImageDtos.add(commentImageDto);
-        }
 
-        return commentImageDtos;
+        return reservationUserCommentImages.stream()
+                .map(CommentImageDto::new)
+                .collect(Collectors.toList());
     }
 }

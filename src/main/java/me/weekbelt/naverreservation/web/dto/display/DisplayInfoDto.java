@@ -1,13 +1,15 @@
 package me.weekbelt.naverreservation.web.dto.display;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import me.weekbelt.naverreservation.domain.category.Category;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 import me.weekbelt.naverreservation.domain.product.Product;
 
 import java.time.LocalDateTime;
 
-@Data
+@NoArgsConstructor
+@Getter
 public class DisplayInfoDto {
 
     // display_info 테이블
