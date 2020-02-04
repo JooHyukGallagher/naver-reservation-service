@@ -25,4 +25,9 @@ public class ProductImage {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ImageType type;
+
+    // == 비즈니스 로직 == //
+    public String getSaveFileName() {
+        return this.getFileInfo().getSaveFileName();
+    }
 }

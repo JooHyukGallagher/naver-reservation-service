@@ -14,8 +14,8 @@ const makeDetailTemplate = {
         // 상품이미지 템플릿 배열 생성
         productImages.forEach((element) => {
             const productImagesTemplate = document.querySelector("#productImg").innerHTML;
-            // const bindTemplate = Handlebars.compile(productImagesTemplate);
             const bindTemplate = makeBindTemplate(productImagesTemplate);
+
             // 텔플릿에 집어넣을 데이터 객체 생성
             const obj = {};
             obj.placeName = displayInfo.placeName;
@@ -24,7 +24,6 @@ const makeDetailTemplate = {
 
             const resultHTML = bindTemplate(obj);
             productImgs.push(resultHTML);
-            // productImgs.push(resultHTML);
         });
         return productImgs;
     },
@@ -63,14 +62,10 @@ const makeDetailTemplate = {
     makeReservationScore: function (avgScore) {
         const avgScoreTemplate = document.querySelector("#averageScore");
         const scoreGraph = document.querySelector(".graph_value");
-        // if (avgScore === "NaN") {
-        //     avgScoreTemplate.innerText = "0.0";
-        //     scoreGraph.style.width = "0%";
-        // } else {
-            avgScore = (avgScore).toFixed(1);
-            avgScoreTemplate.innerText = avgScore;
-            scoreGraph.style.width = avgScore * 10 + "%";
-        // }
+
+        avgScore = (avgScore).toFixed(1);
+        avgScoreTemplate.innerText = avgScore;
+        scoreGraph.style.width = avgScore * 10 + "%";
     },
     // 한줄평 갯수
     makeReservationCommentNum: function (detail_data) {
@@ -130,13 +125,12 @@ const makeDetailTemplate = {
         };
         // 상세정보
         const detailInfoContainer = document.querySelector("#detail").innerHTML;
-        // const detailInfoTemplate = Handlebars.compile(detailInfoContainer);
         const detailInfoTemplate = makeBindTemplate(detailInfoContainer);
         resultHTML = detailInfoTemplate(data);
         sectionInfoTab.innerHTML += resultHTML;
+
         // 오시는길
         const pathContainer = document.querySelector("#path").innerHTML;
-        // const pathTemplate = Handlebars.compile(pathContainer);
         const pathTemplate = makeBindTemplate(pathContainer);
         resultHTML = pathTemplate(data);
         sectionInfoTab.innerHTML += resultHTML;

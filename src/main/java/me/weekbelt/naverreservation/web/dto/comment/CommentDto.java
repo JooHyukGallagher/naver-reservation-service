@@ -1,6 +1,9 @@
 package me.weekbelt.naverreservation.web.dto.comment;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.weekbelt.naverreservation.domain.reservation.ReservationInfo;
 import me.weekbelt.naverreservation.domain.reservation.ReservationUserComment;
 import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
@@ -10,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+
+@NoArgsConstructor
+@Getter
 public class CommentDto {
 
     // reservation_user_comment 테이블

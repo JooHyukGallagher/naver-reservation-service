@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 import me.weekbelt.naverreservation.domain.display.DisplayInfoRepository;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoRepositoryImpl;
 import me.weekbelt.naverreservation.domain.product.*;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
@@ -32,7 +31,7 @@ public class ProductService {
         return promotions.stream()
                 .map(promotion -> {
                     Long productId = promotion.getProduct().getId();
-                    String saveFileName = getSaveFileNameByProductId(productId);
+                    String saveFileName = getProductImageUrl(productId);
                     return new PromotionDto(promotion, saveFileName);
                 })
                 .collect(Collectors.toList());
@@ -53,15 +52,15 @@ public class ProductService {
     private List<ProductDto> createProductDtos(List<DisplayInfo> displayInfoList) {
         return displayInfoList.stream()
                 .map(displayInfo -> {
-                    String saveFileName = getSaveFileNameByProductId(displayInfo.getProduct().getId());
+                    String saveFileName = getProductImageUrl(displayInfo.getProduct().getId());
                     return new ProductDto(displayInfo, saveFileName);
                 })
                 .collect(Collectors.toList());
     }
 
-    private String getSaveFileNameByProductId(Long productId) {
+    private String getProductImageUrl(Long productId) {
         ProductImage productImage = productImageRepository.findProductImageByProductIdAndType(productId, ImageType.th).get(0);
-        return productImage.getFileInfo().getSaveFileName();
+        return productImage.getSaveFileName();
     }
 
     public Integer countProductNumByCategoryId(Long categoryId) {

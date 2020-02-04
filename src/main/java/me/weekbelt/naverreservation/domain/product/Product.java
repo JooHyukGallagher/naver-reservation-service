@@ -7,10 +7,12 @@ import me.weekbelt.naverreservation.domain.category.Category;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 import me.weekbelt.naverreservation.domain.reservation.ReservationInfo;
 import me.weekbelt.naverreservation.domain.reservation.ReservationUserComment;
+import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter @Setter
@@ -47,4 +49,7 @@ public class Product extends BaseTimeEntity {
     private String content;
 
     private String event;
+
+    // == 비즈니스 로직 == //
+
 }

@@ -87,11 +87,13 @@ const registEvent = (displayInfoId) => {
 const requestData = async function () {
     const displayInfoId = document.querySelector(".displayInfoId").id;
     let url = "/api/products/" + displayInfoId;
+
     // 상품 상세보기 데이터 요청
     const detail_data = await ajax("GET", url, null, null);
-    console.log(detail_data);
+
     // 상품 상세 정보 보이기
     showProductDetail(detail_data);
+
     // 여러 이벤트 등록
     registEvent();
 };
