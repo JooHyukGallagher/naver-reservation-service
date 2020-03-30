@@ -5,10 +5,11 @@ import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 import me.weekbelt.naverreservation.domain.display.DisplayInfoRepository;
 import me.weekbelt.naverreservation.domain.product.*;
+import me.weekbelt.naverreservation.domain.promotion.PromotionRepository;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductPriceDto;
-import me.weekbelt.naverreservation.web.dto.product.PromotionDto;
+import me.weekbelt.naverreservation.web.dto.promotion.PromotionDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,20 +23,7 @@ public class ProductService {
 
     private final DisplayInfoRepository displayInfoRepositoryImpl;
     private final ProductImageRepository productImageRepository;
-    private final PromotionRepository promotionRepository;
     private final ProductPriceRepository productPriceRepository;
-
-    public List<PromotionDto> findPromotionDto() {
-        List<Promotion> promotions = promotionRepository.findAll();
-
-        return promotions.stream()
-                .map(promotion -> {
-                    Long productId = promotion.getProduct().getId();
-                    String saveFileName = getProductImageUrl(productId);
-                    return new PromotionDto(promotion, saveFileName);
-                })
-                .collect(Collectors.toList());
-    }
 
     public List<ProductDto> findProductDto(Long categoryId, Integer offset) {
         List<DisplayInfo> displayInfoList;

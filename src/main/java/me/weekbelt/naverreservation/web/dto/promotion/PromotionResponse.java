@@ -1,7 +1,8 @@
-package me.weekbelt.naverreservation.web.dto.product;
+package me.weekbelt.naverreservation.web.dto.promotion;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.weekbelt.naverreservation.web.dto.promotion.PromotionDto;
 
 import java.util.List;
 

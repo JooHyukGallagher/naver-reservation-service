@@ -1,12 +1,10 @@
-package me.weekbelt.naverreservation.domain.product;
+package me.weekbelt.naverreservation.domain.promotion;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.weekbelt.naverreservation.web.dto.product.PromotionDto;
+import me.weekbelt.naverreservation.domain.product.Product;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter @Setter

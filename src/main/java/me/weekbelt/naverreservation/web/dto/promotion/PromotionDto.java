@@ -1,9 +1,13 @@
-package me.weekbelt.naverreservation.web.dto.product;
+package me.weekbelt.naverreservation.web.dto.promotion;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import me.weekbelt.naverreservation.domain.product.Promotion;
+import lombok.ToString;
+import me.weekbelt.naverreservation.domain.promotion.Promotion;
 
+@ToString
+@NoArgsConstructor
 @Getter @Setter
 public class PromotionDto {
 

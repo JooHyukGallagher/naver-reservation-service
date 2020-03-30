@@ -2,7 +2,6 @@ package me.weekbelt.naverreservation.domain.category;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import me.weekbelt.naverreservation.web.dto.category.CategoryDto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,13 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
 @SpringBootTest
@@ -25,9 +21,6 @@ class CategoryRepositoryTest {
 
     @Autowired
     CategoryRepository categoryRepository;
-
-    @PersistenceUnit
-    EntityManagerFactory emf;
 
     @Autowired
     EntityManager em;
