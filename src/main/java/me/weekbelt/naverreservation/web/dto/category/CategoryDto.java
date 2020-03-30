@@ -1,9 +1,13 @@
 package me.weekbelt.naverreservation.web.dto.category;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import me.weekbelt.naverreservation.domain.category.Category;
 
+@ToString
+@NoArgsConstructor
 @Getter @Setter
 public class CategoryDto {
 

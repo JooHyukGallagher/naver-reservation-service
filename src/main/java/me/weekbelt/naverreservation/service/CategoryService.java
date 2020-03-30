@@ -16,19 +16,8 @@ import java.util.stream.Collectors;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
-    private final DisplayInfoRepository displayInfoRepository;
 
-    public List<CategoryDto> findCategoryDto(){
-        List<Category> categories = categoryRepository.findAll();
-        return createCategoryDtos(categories);
-    }
-
-    private List<CategoryDto> createCategoryDtos(List<Category> categories) {
-        return categories.stream()
-                .map(category -> {
-                    Integer count = displayInfoRepository.countDisplayInfoNumberByCategoryId(category.getId());
-                    return new CategoryDto(category, count);
-                })
-                .collect(Collectors.toList());
+    public List<CategoryDto> findCategoryDto() {
+        return categoryRepository.findCategoryDto();
     }
 }
