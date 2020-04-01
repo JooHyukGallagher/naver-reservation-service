@@ -1,45 +1,29 @@
 package me.weekbelt.naverreservation.domain.product;
 
+
 import me.weekbelt.naverreservation.domain.ImageType;
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoRepositoryImpl;
-import me.weekbelt.naverreservation.web.dto.product.ProductDto;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@DataJpaTest
 class ProductImageRepositoryTest {
 //
 //    @Autowired
-//    DisplayInfoRepositoryImpl displayInfoRepository;
+//    private ProductImageRepository productImageRepository;
 //
-//    @Autowired
-//    ProductImageRepositoryImpl productImageRepository;
-//
+//    @DisplayName("")
 //    @Test
-//    public void getProductImageByProductId() throws Exception {
-//        //given
-//        List<DisplayInfo> displayInfoWithProduct = displayInfoRepository.findDisplayInfoWithProduct(0, 4);
+//    public void findProductImageByProductIdAndType() throws Exception {
+//        List<ProductImage> productImageList = productImageRepository.findProductImageByProductIdAndType(1L, ImageType.th);
 //
-//        //when
-//        List<ProductDto> productDtoList = new ArrayList<>();
-//        for (DisplayInfo displayInfo : displayInfoWithProduct) {
-//            Long productId = displayInfo.getProduct().getId();
-//            List<ProductImage> productImages = productImageRepository.getProductImageByProductId(productId, ImageType.th);
-//
-//            ProductImage productImage = productImages.get(0);
-//            ProductDto productDto = new ProductDto(displayInfo, productImage.getFileInfo().getSaveFileName());
-//            productDtoList.add(productDto);
-//        }
-//        //then
-//        for (ProductDto productDto : productDtoList) {
-//            System.out.println(productDto);
-//        }
+//        assertThat(productImageList.get(0)).isNotNull();
 //    }
 }
