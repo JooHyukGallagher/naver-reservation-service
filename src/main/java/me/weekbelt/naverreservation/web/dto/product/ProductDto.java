@@ -1,13 +1,13 @@
 package me.weekbelt.naverreservation.web.dto.product;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import me.weekbelt.naverreservation.domain.display.DisplayInfo;
 
+@NoArgsConstructor
 @Getter @Setter
 @ToString
 public class ProductDto {
+
     // display_info 테이블
     private Long displayInfoId;
     private Long productId;
@@ -27,5 +27,15 @@ public class ProductDto {
         this.placeName = displayInfo.getPlaceName();
         this.productContent = displayInfo.getProduct().getContent();
         this.productImageUrl = saveFileName;
+    }
+
+    @Builder
+    public ProductDto(Long displayInfoId, Long productId, String placeName, String productDescription, String productContent, String productImageUrl) {
+        this.displayInfoId = displayInfoId;
+        this.productId = productId;
+        this.placeName = placeName;
+        this.productDescription = productDescription;
+        this.productContent = productContent;
+        this.productImageUrl = productImageUrl;
     }
 }

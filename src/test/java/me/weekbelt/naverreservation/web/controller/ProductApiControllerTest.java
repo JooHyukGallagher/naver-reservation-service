@@ -1,9 +1,13 @@
 package me.weekbelt.naverreservation.web.controller;
 
 import me.weekbelt.naverreservation.common.BaseControllerTest;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -27,5 +31,7 @@ class ProductApiControllerTest extends BaseControllerTest {
                 .andExpect(jsonPath("totalCount").exists())
                 .andExpect(jsonPath("items").exists())
         ;
+
     }
+
 }
