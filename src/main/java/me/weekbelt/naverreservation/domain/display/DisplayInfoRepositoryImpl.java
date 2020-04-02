@@ -1,5 +1,6 @@
 package me.weekbelt.naverreservation.domain.display;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,19 +21,6 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
     private JPAQueryFactory queryFactory;
 
     @Override
-    public List<DisplayInfo> findDisplayInfoWithProduct(Integer start, Integer limit) {
-        queryFactory = new JPAQueryFactory(em);
-
-        return queryFactory
-                .selectFrom(displayInfo)
-                .join(displayInfo.product, product).fetchJoin()
-                .join(product.category, category).fetchJoin()
-                .limit(limit)
-                .offset(start)
-                .fetch();
-    }
-
-    @Override
     public List<DisplayInfo> findDisplayInfoWithProductByCategoryId(Long categoryId, Integer start, Integer limit) {
         queryFactory = new JPAQueryFactory(em);
 
@@ -40,21 +28,10 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
                 .selectFrom(displayInfo)
                 .join(displayInfo.product, product).fetchJoin()
                 .join(product.category, category).fetchJoin()
-                .where(category.id.eq(categoryId))
+                .where(categoryIdEq(categoryId))
                 .limit(limit)
                 .offset(start)
                 .fetch();
-    }
-
-    @Override
-    public Integer countDisplayInfoNumber() {
-        queryFactory = new JPAQueryFactory(em);
-
-        return (int) queryFactory
-                .selectFrom(displayInfo)
-                .join(displayInfo.product, product)
-                .join(product.category, category)
-                .fetchCount();
     }
 
     @Override
@@ -65,7 +42,14 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
                 .selectFrom(displayInfo)
                 .join(displayInfo.product, product)
                 .join(product.category, category)
-                .where(category.id.eq(categoryId))
+                .where(categoryIdEq(categoryId))
                 .fetchCount();
+    }
+
+    private BooleanExpression categoryIdEq(Long categoryIdCond){
+        if (categoryIdCond == null || categoryIdCond == 0){
+            return null;
+        }
+        return product.category.id.eq(categoryIdCond);
     }
 }

@@ -26,13 +26,8 @@ public class ProductService {
     private final ProductPriceRepository productPriceRepository;
 
     public List<ProductDto> findProductDto(Long categoryId, Integer offset) {
-        List<DisplayInfo> displayInfoList;
-
-        if (categoryId == null || categoryId == 0) {
-            displayInfoList = displayInfoRepositoryImpl.findDisplayInfoWithProduct(offset, LIMIT);
-        } else {
-            displayInfoList = displayInfoRepositoryImpl.findDisplayInfoWithProductByCategoryId(categoryId, offset, LIMIT);
-        }
+        List<DisplayInfo> displayInfoList = displayInfoRepositoryImpl
+                .findDisplayInfoWithProductByCategoryId(categoryId, offset, LIMIT);
 
         return createProductDtos(displayInfoList);
     }
@@ -52,9 +47,6 @@ public class ProductService {
     }
 
     public Integer countProductNumByCategoryId(Long categoryId) {
-        if (categoryId == null || categoryId == 0) {
-            return displayInfoRepositoryImpl.countDisplayInfoNumber();
-        }
         return displayInfoRepositoryImpl.countDisplayInfoNumberByCategoryId(categoryId);
     }
 
