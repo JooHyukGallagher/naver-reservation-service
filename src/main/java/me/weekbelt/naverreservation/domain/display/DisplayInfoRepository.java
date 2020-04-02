@@ -8,9 +8,4 @@ import java.util.Optional;
 
 public interface DisplayInfoRepository extends JpaRepository<DisplayInfo, Long>, DisplayInfoRepositoryCustom {
 
-    @Query("select di from DisplayInfo di" +
-            " join fetch di.product p" +
-            " join fetch p.category c" +
-            " where di.id = :displayInfoId")
-    Optional<DisplayInfo> findDisplayInfoByDisplayInfoId(@Param("displayInfoId") Long displayInfoId);
 }

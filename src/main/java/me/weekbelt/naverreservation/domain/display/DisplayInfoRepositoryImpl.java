@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 import static me.weekbelt.naverreservation.domain.category.QCategory.category;
 import static me.weekbelt.naverreservation.domain.display.QDisplayInfo.*;
@@ -51,5 +52,17 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
             return null;
         }
         return product.category.id.eq(categoryIdCond);
+    }
+
+    @Override
+    public Optional<DisplayInfo> findDisplayInfoByDisplayInfoId(Long displayInfoId) {
+        queryFactory = new JPAQueryFactory(em);
+
+        return Optional.ofNullable(queryFactory
+                .selectFrom(displayInfo)
+                .join(displayInfo.product, product).fetchJoin()
+                .join(product.category, category).fetchJoin()
+                .where(displayInfo.id.eq(displayInfoId))
+                .fetchOne());
     }
 }
