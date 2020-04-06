@@ -40,7 +40,7 @@ public class QProductPrice extends EntityPathBase<ProductPrice> {
 
     public final QProduct product;
 
-    public final ListPath<me.weekbelt.naverreservation.domain.reservation.ReservationInfoPrice, me.weekbelt.naverreservation.domain.reservation.QReservationInfoPrice> reservationInfoPrices = this.<me.weekbelt.naverreservation.domain.reservation.ReservationInfoPrice, me.weekbelt.naverreservation.domain.reservation.QReservationInfoPrice>createList("reservationInfoPrices", me.weekbelt.naverreservation.domain.reservation.ReservationInfoPrice.class, me.weekbelt.naverreservation.domain.reservation.QReservationInfoPrice.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfoPrice, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfoPrice> reservationInfoPrices = this.<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfoPrice, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfoPrice>createList("reservationInfoPrices", me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfoPrice.class, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfoPrice.class, PathInits.DIRECT2);
 
     public QProductPrice(String variable) {
         this(ProductPrice.class, forVariable(variable), INITS);

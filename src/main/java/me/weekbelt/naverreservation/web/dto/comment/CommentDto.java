@@ -1,15 +1,12 @@
 package me.weekbelt.naverreservation.web.dto.comment;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfo;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserComment;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +30,7 @@ public class CommentDto {
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
 
+    // reservation_info_image 테이블
     private List<CommentImageDto> commentImages;
 
     public CommentDto(ReservationUserComment reservationUserComment) {

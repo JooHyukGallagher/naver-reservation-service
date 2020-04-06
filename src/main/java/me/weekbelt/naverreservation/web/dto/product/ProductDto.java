@@ -1,7 +1,7 @@
 package me.weekbelt.naverreservation.web.dto.product;
 
 import lombok.*;
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
 
 @NoArgsConstructor
 @Getter @Setter

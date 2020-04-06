@@ -1,10 +1,8 @@
 package me.weekbelt.naverreservation.web.controller.view;
 
 import lombok.RequiredArgsConstructor;
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfoRepository;
 import me.weekbelt.naverreservation.service.ReservationService;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationInfoDto;
-import me.weekbelt.naverreservation.web.dto.reservation.ReservationResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

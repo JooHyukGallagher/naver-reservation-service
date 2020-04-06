@@ -2,14 +2,16 @@ package me.weekbelt.naverreservation.service;
 
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoRepository;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfoRepository;
 import me.weekbelt.naverreservation.domain.product.*;
-import me.weekbelt.naverreservation.domain.promotion.PromotionRepository;
+import me.weekbelt.naverreservation.domain.productImage.ProductImage;
+import me.weekbelt.naverreservation.domain.productImage.ProductImageRepository;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPriceRepository;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductPriceDto;
-import me.weekbelt.naverreservation.web.dto.promotion.PromotionDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

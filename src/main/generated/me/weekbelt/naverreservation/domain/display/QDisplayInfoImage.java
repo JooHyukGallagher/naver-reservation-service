@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.display;
+package me.weekbelt.naverreservation.domain.displayInfo;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 

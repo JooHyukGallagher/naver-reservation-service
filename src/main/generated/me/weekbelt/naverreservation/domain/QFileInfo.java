@@ -29,7 +29,7 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
 
     public final BooleanPath deleteFlag = createBoolean("deleteFlag");
 
-    public final ListPath<me.weekbelt.naverreservation.domain.display.DisplayInfoImage, me.weekbelt.naverreservation.domain.display.QDisplayInfoImage> displayInfoImages = this.<me.weekbelt.naverreservation.domain.display.DisplayInfoImage, me.weekbelt.naverreservation.domain.display.QDisplayInfoImage>createList("displayInfoImages", me.weekbelt.naverreservation.domain.display.DisplayInfoImage.class, me.weekbelt.naverreservation.domain.display.QDisplayInfoImage.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.displayInfo.DisplayInfoImage, me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfoImage> displayInfoImages = this.<me.weekbelt.naverreservation.domain.displayInfo.DisplayInfoImage, me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfoImage>createList("displayInfoImages", me.weekbelt.naverreservation.domain.displayInfo.DisplayInfoImage.class, me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfoImage.class, PathInits.DIRECT2);
 
     public final StringPath fileName = createString("fileName");
 
@@ -40,7 +40,7 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
 
     public final ListPath<me.weekbelt.naverreservation.domain.product.ProductImage, me.weekbelt.naverreservation.domain.product.QProductImage> productImages = this.<me.weekbelt.naverreservation.domain.product.ProductImage, me.weekbelt.naverreservation.domain.product.QProductImage>createList("productImages", me.weekbelt.naverreservation.domain.product.ProductImage.class, me.weekbelt.naverreservation.domain.product.QProductImage.class, PathInits.DIRECT2);
 
-    public final ListPath<me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage, me.weekbelt.naverreservation.domain.reservation.QReservationUserCommentImage> reservationUserCommentImages = this.<me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage, me.weekbelt.naverreservation.domain.reservation.QReservationUserCommentImage>createList("reservationUserCommentImages", me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage.class, me.weekbelt.naverreservation.domain.reservation.QReservationUserCommentImage.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationUserCommentImage, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserCommentImage> reservationUserCommentImages = this.<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationUserCommentImage, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserCommentImage>createList("reservationUserCommentImages", me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationUserCommentImage.class, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserCommentImage.class, PathInits.DIRECT2);
 
     public final StringPath saveFileName = createString("saveFileName");
 

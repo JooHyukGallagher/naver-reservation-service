@@ -1,9 +1,10 @@
-package me.weekbelt.naverreservation.domain.product;
+package me.weekbelt.naverreservation.domain.productPrice;
 
 import lombok.Getter;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.BaseTimeEntity;
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfoPrice;
+import me.weekbelt.naverreservation.domain.product.Product;
+import me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfoPrice;
 
 import javax.persistence.*;
 import java.util.ArrayList;

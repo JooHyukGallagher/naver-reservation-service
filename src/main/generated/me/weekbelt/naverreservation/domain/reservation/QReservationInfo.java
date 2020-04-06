@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationInfoPrice;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -29,7 +29,7 @@ public class QReservationInfo extends EntityPathBase<ReservationInfo> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
 
-    public final me.weekbelt.naverreservation.domain.display.QDisplayInfo displayInfo;
+    public final me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo displayInfo;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -68,7 +68,7 @@ public class QReservationInfo extends EntityPathBase<ReservationInfo> {
 
     public QReservationInfo(Class<? extends ReservationInfo> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.displayInfo = inits.isInitialized("displayInfo") ? new me.weekbelt.naverreservation.domain.display.QDisplayInfo(forProperty("displayInfo"), inits.get("displayInfo")) : null;
+        this.displayInfo = inits.isInitialized("displayInfo") ? new me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo(forProperty("displayInfo"), inits.get("displayInfo")) : null;
         this.product = inits.isInitialized("product") ? new me.weekbelt.naverreservation.domain.product.QProduct(forProperty("product"), inits.get("product")) : null;
     }
 

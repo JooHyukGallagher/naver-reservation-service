@@ -2,8 +2,8 @@ package me.weekbelt.naverreservation.web.dto.comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserComment;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
 
 import java.time.LocalDateTime;
 import java.util.List;

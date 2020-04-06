@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationInfoPrice;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.product;
+package me.weekbelt.naverreservation.domain.productImage;
 
 import me.weekbelt.naverreservation.domain.ImageType;
 

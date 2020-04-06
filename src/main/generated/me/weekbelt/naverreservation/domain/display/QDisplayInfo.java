@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.display;
+package me.weekbelt.naverreservation.domain.displayInfo;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -46,7 +46,7 @@ public class QDisplayInfo extends EntityPathBase<DisplayInfo> {
 
     public final me.weekbelt.naverreservation.domain.product.QProduct product;
 
-    public final ListPath<me.weekbelt.naverreservation.domain.reservation.ReservationInfo, me.weekbelt.naverreservation.domain.reservation.QReservationInfo> reservationInfos = this.<me.weekbelt.naverreservation.domain.reservation.ReservationInfo, me.weekbelt.naverreservation.domain.reservation.QReservationInfo>createList("reservationInfos", me.weekbelt.naverreservation.domain.reservation.ReservationInfo.class, me.weekbelt.naverreservation.domain.reservation.QReservationInfo.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfo, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo> reservationInfos = this.<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfo, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo>createList("reservationInfos", me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfo.class, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo.class, PathInits.DIRECT2);
 
     public final StringPath tel = createString("tel");
 

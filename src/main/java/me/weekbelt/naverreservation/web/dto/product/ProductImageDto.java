@@ -3,7 +3,7 @@ package me.weekbelt.naverreservation.web.dto.product;
 import lombok.Data;
 import me.weekbelt.naverreservation.domain.FileInfo;
 import me.weekbelt.naverreservation.domain.ImageType;
-import me.weekbelt.naverreservation.domain.product.ProductImage;
+import me.weekbelt.naverreservation.domain.productImage.ProductImage;
 
 import java.time.LocalDateTime;
 

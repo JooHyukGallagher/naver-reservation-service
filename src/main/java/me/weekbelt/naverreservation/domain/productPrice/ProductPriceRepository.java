@@ -1,5 +1,6 @@
-package me.weekbelt.naverreservation.domain.product;
+package me.weekbelt.naverreservation.domain.productPrice;
 
+import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

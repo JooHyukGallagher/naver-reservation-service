@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationUserCommentImage;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

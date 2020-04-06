@@ -1,7 +1,7 @@
 package me.weekbelt.naverreservation.web.dto.product;
 
 import lombok.Data;
-import me.weekbelt.naverreservation.domain.product.ProductPrice;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
 
 import java.time.LocalDateTime;
 

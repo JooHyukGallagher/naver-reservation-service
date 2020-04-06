@@ -1,7 +1,7 @@
 package me.weekbelt.naverreservation.service;
 
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfo;
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfoRepository;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfoRepository;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationPriceDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationResponse;

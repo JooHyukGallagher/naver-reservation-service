@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationUserComment;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.BaseTimeEntity;
 import me.weekbelt.naverreservation.domain.product.Product;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
 
 import javax.persistence.*;
 import java.util.ArrayList;

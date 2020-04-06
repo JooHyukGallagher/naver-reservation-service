@@ -4,13 +4,21 @@ import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.FileInfo;
 import me.weekbelt.naverreservation.domain.product.Product;
 import me.weekbelt.naverreservation.domain.product.ProductRepository;
-import me.weekbelt.naverreservation.domain.reservation.*;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfoRepository;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserCommentRepository;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImageRepository;
 import me.weekbelt.naverreservation.util.ImageFile;
+import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.comment.CommentResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +30,15 @@ public class CommentService {
     private final ReservationUserCommentImageRepository reservationUserCommentImageRepository;
     private final ProductRepository productRepository;
     private final ReservationInfoRepository reservationInfoRepository;
+
+
+    public List<CommentDto> findCommentDto(Long productId) {
+        List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
+
+        return reservationUserComments.stream()
+                .map(CommentDto::new)
+                .collect(Collectors.toList());
+    }
 
     @Transactional
     public Long saveComment(MultipartFile commentImage, String comment,

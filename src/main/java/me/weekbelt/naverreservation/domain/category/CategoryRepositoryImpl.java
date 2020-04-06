@@ -1,19 +1,15 @@
 package me.weekbelt.naverreservation.domain.category;
 
-import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import me.weekbelt.naverreservation.domain.display.QDisplayInfo;
-import me.weekbelt.naverreservation.domain.product.QProduct;
 import me.weekbelt.naverreservation.web.dto.category.CategoryDto;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static me.weekbelt.naverreservation.domain.category.QCategory.*;
-import static me.weekbelt.naverreservation.domain.display.QDisplayInfo.*;
+import static me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo.*;
 import static me.weekbelt.naverreservation.domain.product.QProduct.*;
 
 @RequiredArgsConstructor

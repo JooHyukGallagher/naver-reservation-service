@@ -1,12 +1,14 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationInfo;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import me.weekbelt.naverreservation.domain.BaseTimeEntity;
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
 import me.weekbelt.naverreservation.domain.product.Product;
+import me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfoPrice;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
 import me.weekbelt.naverreservation.util.TimeUtil;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
 import org.hibernate.annotations.ColumnDefault;

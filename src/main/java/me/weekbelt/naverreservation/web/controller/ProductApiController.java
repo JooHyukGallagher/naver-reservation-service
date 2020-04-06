@@ -2,6 +2,7 @@ package me.weekbelt.naverreservation.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
+import me.weekbelt.naverreservation.service.CommentService;
 import me.weekbelt.naverreservation.service.DisplayInfoService;
 import me.weekbelt.naverreservation.service.ProductService;
 import me.weekbelt.naverreservation.service.ReservationService;
@@ -26,6 +27,7 @@ public class ProductApiController {
     private final ProductService productService;
     private final DisplayInfoService displayInfoService;
     private final ReservationService reservationService;
+    private final CommentService commentService;
 
     @GetMapping("/products")
     public ProductResponse getProductList(@RequestParam(defaultValue = "0") Long categoryId,
@@ -47,7 +49,7 @@ public class ProductApiController {
 
         Long productId = displayInfo.getProductId();
         List<ProductImageDto> productImages = productService.findProductImageDto(productId, ImageType.ma);
-        List<CommentDto> comments = reservationService.findCommentDto(productId);
+        List<CommentDto> comments = commentService.findCommentDto(productId);
         List<ProductPriceDto> productPrices = productService.findProductPriceDto(productId);
         Double averageScore = reservationService.findAverageScore(productId);
 

@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.display;
+package me.weekbelt.naverreservation.domain.displayInfo;
 
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 import org.junit.jupiter.api.Test;

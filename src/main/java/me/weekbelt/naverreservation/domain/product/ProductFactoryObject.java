@@ -1,6 +1,6 @@
 package me.weekbelt.naverreservation.domain.product;
 
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 
 public class ProductFactoryObject {

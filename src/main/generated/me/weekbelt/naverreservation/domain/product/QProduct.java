@@ -33,7 +33,7 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final StringPath description = createString("description");
 
-    public final ListPath<me.weekbelt.naverreservation.domain.display.DisplayInfo, me.weekbelt.naverreservation.domain.display.QDisplayInfo> displayInfos = this.<me.weekbelt.naverreservation.domain.display.DisplayInfo, me.weekbelt.naverreservation.domain.display.QDisplayInfo>createList("displayInfos", me.weekbelt.naverreservation.domain.display.DisplayInfo.class, me.weekbelt.naverreservation.domain.display.QDisplayInfo.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo, me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo> displayInfos = this.<me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo, me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo>createList("displayInfos", me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo.class, me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo.class, PathInits.DIRECT2);
 
     public final StringPath event = createString("event");
 
@@ -48,9 +48,9 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final ListPath<Promotion, QPromotion> promotions = this.<Promotion, QPromotion>createList("promotions", Promotion.class, QPromotion.class, PathInits.DIRECT2);
 
-    public final ListPath<me.weekbelt.naverreservation.domain.reservation.ReservationInfo, me.weekbelt.naverreservation.domain.reservation.QReservationInfo> reservationInfos = this.<me.weekbelt.naverreservation.domain.reservation.ReservationInfo, me.weekbelt.naverreservation.domain.reservation.QReservationInfo>createList("reservationInfos", me.weekbelt.naverreservation.domain.reservation.ReservationInfo.class, me.weekbelt.naverreservation.domain.reservation.QReservationInfo.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfo, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo> reservationInfos = this.<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfo, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo>createList("reservationInfos", me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationInfo.class, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo.class, PathInits.DIRECT2);
 
-    public final ListPath<me.weekbelt.naverreservation.domain.reservation.ReservationUserComment, me.weekbelt.naverreservation.domain.reservation.QReservationUserComment> reservationUserComments = this.<me.weekbelt.naverreservation.domain.reservation.ReservationUserComment, me.weekbelt.naverreservation.domain.reservation.QReservationUserComment>createList("reservationUserComments", me.weekbelt.naverreservation.domain.reservation.ReservationUserComment.class, me.weekbelt.naverreservation.domain.reservation.QReservationUserComment.class, PathInits.DIRECT2);
+    public final ListPath<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationUserComment, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserComment> reservationUserComments = this.<me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationUserComment, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserComment>createList("reservationUserComments", me.weekbelt.naverreservation.domain.reservationInfoPrice.ReservationUserComment.class, me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserComment.class, PathInits.DIRECT2);
 
     public QProduct(String variable) {
         this(Product.class, forVariable(variable), INITS);

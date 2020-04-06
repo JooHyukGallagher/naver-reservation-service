@@ -1,9 +1,10 @@
-package me.weekbelt.naverreservation.domain.product;
+package me.weekbelt.naverreservation.domain.productImage;
 
 import lombok.Getter;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.FileInfo;
 import me.weekbelt.naverreservation.domain.ImageType;
+import me.weekbelt.naverreservation.domain.product.Product;
 
 import javax.persistence.*;
 

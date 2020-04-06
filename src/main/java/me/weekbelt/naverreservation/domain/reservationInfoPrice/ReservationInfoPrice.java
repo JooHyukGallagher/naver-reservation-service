@@ -1,14 +1,12 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationInfoPrice;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import me.weekbelt.naverreservation.domain.product.ProductPrice;
-import me.weekbelt.naverreservation.web.dto.reservation.ReservationPriceDto;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter

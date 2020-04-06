@@ -1,11 +1,12 @@
-package me.weekbelt.naverreservation.domain.reservation;
+package me.weekbelt.naverreservation.domain.reservationUserCommentImage;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.FileInfo;
-import me.weekbelt.naverreservation.web.dto.comment.CommentResponse;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
 
 import javax.persistence.*;
 

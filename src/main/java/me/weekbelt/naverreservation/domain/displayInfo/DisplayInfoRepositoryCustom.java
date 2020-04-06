@@ -1,6 +1,4 @@
-package me.weekbelt.naverreservation.domain.display;
-
-import org.springframework.data.repository.query.Param;
+package me.weekbelt.naverreservation.domain.displayInfo;
 
 import java.util.List;
 import java.util.Optional;

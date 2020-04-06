@@ -1,4 +1,4 @@
-package me.weekbelt.naverreservation.domain.display;
+package me.weekbelt.naverreservation.domain.displayInfo;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static me.weekbelt.naverreservation.domain.category.QCategory.category;
-import static me.weekbelt.naverreservation.domain.display.QDisplayInfo.*;
+import static me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo.*;
 import static me.weekbelt.naverreservation.domain.product.QProduct.product;
 
 @RequiredArgsConstructor
@@ -47,8 +47,8 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
                 .fetchCount();
     }
 
-    private BooleanExpression categoryIdEq(Long categoryIdCond){
-        if (categoryIdCond == null || categoryIdCond == 0){
+    private BooleanExpression categoryIdEq(Long categoryIdCond) {
+        if (categoryIdCond == null || categoryIdCond == 0) {
             return null;
         }
         return product.category.id.eq(categoryIdCond);

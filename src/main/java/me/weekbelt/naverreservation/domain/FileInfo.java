@@ -3,10 +3,9 @@ package me.weekbelt.naverreservation.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoImage;
-import me.weekbelt.naverreservation.domain.product.ProductImage;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
+import me.weekbelt.naverreservation.domain.displayInfoImage.DisplayInfoImage;
+import me.weekbelt.naverreservation.domain.productImage.ProductImage;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;

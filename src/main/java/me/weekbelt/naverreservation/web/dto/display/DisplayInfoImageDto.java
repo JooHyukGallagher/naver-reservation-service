@@ -2,7 +2,7 @@ package me.weekbelt.naverreservation.web.dto.display;
 
 import lombok.Data;
 import me.weekbelt.naverreservation.domain.FileInfo;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoImage;
+import me.weekbelt.naverreservation.domain.displayInfoImage.DisplayInfoImage;
 
 import java.time.LocalDateTime;
 

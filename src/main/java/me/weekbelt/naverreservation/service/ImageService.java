@@ -2,12 +2,12 @@ package me.weekbelt.naverreservation.service;
 
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoImage;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoImageRepository;
-import me.weekbelt.naverreservation.domain.product.ProductImage;
-import me.weekbelt.naverreservation.domain.product.ProductImageRepository;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImage;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserCommentImageRepository;
+import me.weekbelt.naverreservation.domain.displayInfoImage.DisplayInfoImage;
+import me.weekbelt.naverreservation.domain.displayInfoImage.DisplayInfoImageRepository;
+import me.weekbelt.naverreservation.domain.productImage.ProductImage;
+import me.weekbelt.naverreservation.domain.productImage.ProductImageRepository;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImage;
+import me.weekbelt.naverreservation.domain.reservationUserCommentImage.ReservationUserCommentImageRepository;
 import me.weekbelt.naverreservation.web.dto.display.DisplayInfoImageDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationCommentImageDto;

@@ -1,8 +1,9 @@
-package me.weekbelt.naverreservation.domain.display;
+package me.weekbelt.naverreservation.domain.displayInfoImage;
 
 import lombok.Getter;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.FileInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
 
 import javax.persistence.*;
 

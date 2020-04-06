@@ -1,13 +1,17 @@
 package me.weekbelt.naverreservation.service;
 
 import lombok.RequiredArgsConstructor;
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
-import me.weekbelt.naverreservation.domain.display.DisplayInfoRepository;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfoRepository;
 import me.weekbelt.naverreservation.domain.product.Product;
-import me.weekbelt.naverreservation.domain.product.ProductPrice;
-import me.weekbelt.naverreservation.domain.product.ProductPriceRepository;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPriceRepository;
 import me.weekbelt.naverreservation.domain.product.ProductRepository;
-import me.weekbelt.naverreservation.domain.reservation.*;
+import me.weekbelt.naverreservation.domain.reservationInfoPrice.*;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfoRepository;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserCommentRepository;
 import me.weekbelt.naverreservation.util.TimeUtil;
 import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationInfoDto;
@@ -30,14 +34,6 @@ public class ReservationService {
     private final ProductPriceRepository productPriceRepository;
     private final DisplayInfoRepository displayInfoRepository;
     private final ProductRepository productRepository;
-
-    public List<CommentDto> findCommentDto(Long productId) {
-        List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
-
-        return reservationUserComments.stream()
-                .map(CommentDto::new)
-                .collect(Collectors.toList());
-    }
 
     public Double findAverageScore(Long productId) {
         double averageScore = 0.0;

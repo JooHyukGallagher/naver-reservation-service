@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import me.weekbelt.naverreservation.domain.BaseTimeEntity;
 import me.weekbelt.naverreservation.domain.category.Category;
-import me.weekbelt.naverreservation.domain.display.DisplayInfo;
+import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
+import me.weekbelt.naverreservation.domain.productImage.ProductImage;
+import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
 import me.weekbelt.naverreservation.domain.promotion.Promotion;
-import me.weekbelt.naverreservation.domain.reservation.ReservationInfo;
-import me.weekbelt.naverreservation.domain.reservation.ReservationUserComment;
+import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
+import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
 
 import javax.persistence.*;
 import java.util.ArrayList;
