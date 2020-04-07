@@ -19,4 +19,6 @@ public class DisplayInfoResponse {
     private List<CommentDto> comments;
     private Double averageScore;
     private List<ProductPriceDto> productPrices;
+
+
 }

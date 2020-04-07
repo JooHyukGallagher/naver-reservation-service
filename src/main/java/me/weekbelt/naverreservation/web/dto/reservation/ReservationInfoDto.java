@@ -1,10 +1,13 @@
 package me.weekbelt.naverreservation.web.dto.reservation;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
 import me.weekbelt.naverreservation.web.dto.display.DisplayInfoDto;
 
 import java.time.LocalDateTime;
+
 
 @Getter
 public class ReservationInfoDto {

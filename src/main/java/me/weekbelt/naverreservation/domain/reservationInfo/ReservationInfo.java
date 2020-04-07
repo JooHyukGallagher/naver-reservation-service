@@ -87,4 +87,16 @@ public class ReservationInfo extends BaseTimeEntity {
     public void cancelReservation() {
         this.cancelFlag = true;
     }
+
+    public Integer createTotalPrice(List<ReservationInfoPrice> reservationInfoPriceList){
+        int sum = 0;
+
+        for (ReservationInfoPrice reservationInfoPrice : reservationInfoPriceList) {
+            int count = reservationInfoPrice.getCount();
+            int price = reservationInfoPrice.getProductPrice().getPrice();
+            sum += count * price;
+        }
+
+        return sum;
+    }
 }

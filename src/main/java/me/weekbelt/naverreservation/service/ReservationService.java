@@ -40,12 +40,14 @@ public class ReservationService {
         return reservationInfos.stream()
                 .map(reservationInfo -> {
                     ReservationInfoDto reservationInfoDto = new ReservationInfoDto(reservationInfo);
-                    reservationInfoDto.setTotalPrice(createTotalPrice(reservationInfo.getId()));
-
+                    List<ReservationInfoPrice> reservationInfoPriceList = reservationInfoPriceRepository
+                                    .findReservationInfoPriceByReservationInfoId(reservationInfo.getId());
+                    reservationInfoDto.setTotalPrice(reservationInfo.createTotalPrice(reservationInfoPriceList));
                     return reservationInfoDto;
                 })
                 .collect(Collectors.toList());
     }
+
 
     public ReservationInfoDto findReservationInfoDto(Long reservationInfoId) {
         ReservationInfo reservationInfo = reservationInfoRepository.findReservationInfoByReservationInfoId(reservationInfoId);
@@ -79,19 +81,6 @@ public class ReservationService {
                 .modifyDate(reservationInfo.getModifyDate())
                 .prices(reservationPriceDtos)
                 .build();
-    }
-
-    private Integer createTotalPrice(Long reservationInfoId) {
-        List<ReservationInfoPrice> reservationInfoPriceList = reservationInfoPriceRepository.findReservationInfoPriceByReservationInfoId(reservationInfoId);
-        int sum = 0;
-
-        for (ReservationInfoPrice reservationInfoPrice : reservationInfoPriceList) {
-            int count = reservationInfoPrice.getCount();
-            int price = reservationInfoPrice.getProductPrice().getPrice();
-            sum += count * price;
-        }
-
-        return sum;
     }
 
     @Transactional

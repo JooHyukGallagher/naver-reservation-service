@@ -22,8 +22,6 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
 
     @Override
     public List<DisplayInfo> findDisplayInfoWithProductByCategoryId(Long categoryId, Integer start, Integer limit) {
-//        queryFactory = new JPAQueryFactory(em);
-
         return queryFactory
                 .selectFrom(displayInfo)
                 .join(displayInfo.product, product).fetchJoin()
@@ -36,12 +34,10 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
 
     @Override
     public Integer countDisplayInfoNumberByCategoryId(Long categoryId) {
-//        queryFactory = new JPAQueryFactory(em);
-
         return (int) queryFactory
                 .selectFrom(displayInfo)
-                .join(displayInfo.product, product)
-                .join(product.category, category)
+                .join(displayInfo.product, product).fetchJoin()
+                .join(product.category, category).fetchJoin()
                 .where(categoryIdEq(categoryId))
                 .fetchCount();
     }
@@ -55,8 +51,6 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
 
     @Override
     public Optional<DisplayInfo> findDisplayInfoByDisplayInfoId(Long displayInfoId) {
-//        queryFactory = new JPAQueryFactory(em);
-
         return Optional.ofNullable(queryFactory
                 .selectFrom(displayInfo)
                 .join(displayInfo.product, product).fetchJoin()
