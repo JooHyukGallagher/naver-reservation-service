@@ -14,23 +14,23 @@ class DisplayInfoRepositoryTest {
     @Autowired
     DisplayInfoRepositoryImpl displayInfoRepository;
     
-    @Test
-    public void findDisplayInfoWithProduct() throws Exception {
-        //given
-        List<DisplayInfo> displayInfoList = displayInfoRepository.findDisplayInfoWithProduct(1, 4);
-
-        //when
-        List<ProductDto> productDtoList = new ArrayList<>();
-        for (DisplayInfo displayInfo : displayInfoList) {
-            ProductDto productDto = new ProductDto(displayInfo, null);
-            productDtoList.add(productDto);
-        }
-
-        //then
-        for (ProductDto productDto : productDtoList) {
-            System.out.println(productDto);
-        }
-    }
+//    @Test
+//    public void findDisplayInfoWithProduct() throws Exception {
+//        //given
+//        List<DisplayInfo> displayInfoList = displayInfoRepository.findDisplayInfoWithProduct(1, 4);
+//
+//        //when
+//        List<ProductDto> productDtoList = new ArrayList<>();
+//        for (DisplayInfo displayInfo : displayInfoList) {
+//            ProductDto productDto = new ProductDto(displayInfo, null);
+//            productDtoList.add(productDto);
+//        }
+//
+//        //then
+//        for (ProductDto productDto : productDtoList) {
+//            System.out.println(productDto);
+//        }
+//    }
     
     @Test
     public void findDisplayInfoWithProductByCategoryId() throws Exception {

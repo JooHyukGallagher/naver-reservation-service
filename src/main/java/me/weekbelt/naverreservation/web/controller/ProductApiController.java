@@ -26,7 +26,6 @@ public class ProductApiController {
 
     private final ProductService productService;
     private final DisplayInfoService displayInfoService;
-    private final ReservationService reservationService;
     private final CommentService commentService;
 
     @GetMapping("/products")
@@ -51,7 +50,7 @@ public class ProductApiController {
         List<ProductImageDto> productImages = productService.findProductImageDto(productId, ImageType.ma);
         List<CommentDto> comments = commentService.findCommentDto(productId);
         List<ProductPriceDto> productPrices = productService.findProductPriceDto(productId);
-        Double averageScore = reservationService.findAverageScore(productId);
+        Double averageScore = commentService.findAverageScore(productId);
 
         DisplayInfoResponse displayInfoResponse = DisplayInfoResponse.builder()
                 .displayInfo(displayInfo)

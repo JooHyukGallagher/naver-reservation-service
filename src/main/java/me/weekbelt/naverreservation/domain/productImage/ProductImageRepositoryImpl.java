@@ -15,10 +15,10 @@ import static me.weekbelt.naverreservation.domain.product.QProductImage.*;
 public class ProductImageRepositoryImpl implements ProductImageRepositoryCustom {
 
     private final EntityManager em;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public List<ProductImage> findProductImageByProductIdAndType(Long productId, ImageType type) {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         return queryFactory
                 .selectFrom(productImage)
                 .join(productImage.product, product).fetchJoin()

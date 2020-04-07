@@ -28,26 +28,11 @@ import java.util.stream.Collectors;
 @Service
 public class ReservationService {
 
-    private final ReservationUserCommentRepository reservationUserCommentRepository;
     private final ReservationInfoRepository reservationInfoRepository;
     private final ReservationInfoPriceRepository reservationInfoPriceRepository;
     private final ProductPriceRepository productPriceRepository;
     private final DisplayInfoRepository displayInfoRepository;
     private final ProductRepository productRepository;
-
-    public Double findAverageScore(Long productId) {
-        double averageScore = 0.0;
-
-        List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
-        if (!reservationUserComments.isEmpty()){
-            for (ReservationUserComment reservationUserComment : reservationUserComments) {
-                averageScore += reservationUserComment.getScore();
-            }
-            averageScore /= reservationUserComments.size();
-        }
-
-        return averageScore;
-    }
 
     public List<ReservationInfoDto> findReservationInfoDto(String reservationEmail) {
         List<ReservationInfo> reservationInfos = reservationInfoRepository.findReservationInfoByReservationEmail(reservationEmail);

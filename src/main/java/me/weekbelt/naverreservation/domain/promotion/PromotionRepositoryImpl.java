@@ -18,11 +18,10 @@ import static me.weekbelt.naverreservation.domain.product.QPromotion.*;
 public class PromotionRepositoryImpl implements PromotionRepositoryCustom{
 
     private final EntityManager em;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public List<PromotionDto> findPromotionDto() {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-
         return queryFactory
                 .select(Projections.fields(PromotionDto.class,
                         promotion.id,

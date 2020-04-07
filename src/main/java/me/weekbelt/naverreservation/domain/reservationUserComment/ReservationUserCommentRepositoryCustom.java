@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface ReservationUserCommentRepositoryCustom {
     List<ReservationUserComment> findReservationUserCommentByProductId(Long productId);
+
+    Double findAverageScoreByProductId(Long productId);
 }

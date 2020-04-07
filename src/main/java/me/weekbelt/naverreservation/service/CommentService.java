@@ -40,6 +40,14 @@ public class CommentService {
                 .collect(Collectors.toList());
     }
 
+    public Double findAverageScore(Long productId) {
+        Double averageScore = reservationUserCommentRepository.findAverageScoreByProductId(productId);
+        if (averageScore == null){
+            return 0.0;
+        }
+        return averageScore;
+    }
+
     @Transactional
     public Long saveComment(MultipartFile commentImage, String comment,
                             Long productId, Long reservationInfoId, int score) {

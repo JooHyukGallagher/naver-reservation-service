@@ -18,12 +18,11 @@ import static me.weekbelt.naverreservation.domain.product.QProduct.product;
 public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
 
     private final EntityManager em;
-
-    private JPAQueryFactory queryFactory;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public List<DisplayInfo> findDisplayInfoWithProductByCategoryId(Long categoryId, Integer start, Integer limit) {
-        queryFactory = new JPAQueryFactory(em);
+//        queryFactory = new JPAQueryFactory(em);
 
         return queryFactory
                 .selectFrom(displayInfo)
@@ -37,7 +36,7 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
 
     @Override
     public Integer countDisplayInfoNumberByCategoryId(Long categoryId) {
-        queryFactory = new JPAQueryFactory(em);
+//        queryFactory = new JPAQueryFactory(em);
 
         return (int) queryFactory
                 .selectFrom(displayInfo)
@@ -56,7 +55,7 @@ public class DisplayInfoRepositoryImpl implements DisplayInfoRepositoryCustom {
 
     @Override
     public Optional<DisplayInfo> findDisplayInfoByDisplayInfoId(Long displayInfoId) {
-        queryFactory = new JPAQueryFactory(em);
+//        queryFactory = new JPAQueryFactory(em);
 
         return Optional.ofNullable(queryFactory
                 .selectFrom(displayInfo)

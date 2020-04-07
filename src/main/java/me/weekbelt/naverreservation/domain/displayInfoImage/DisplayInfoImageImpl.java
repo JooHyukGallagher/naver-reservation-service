@@ -14,11 +14,10 @@ import static me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfoImage.
 public class DisplayInfoImageImpl implements DisplayInfoImageCustom{
 
     private final EntityManager em;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public Optional<DisplayInfoImage> findDisplayInfoImageByDisplayInfoId(Long displayInfoId) {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-
         return Optional.ofNullable(queryFactory
                 .selectFrom(displayInfoImage)
                 .join(displayInfoImage.fileInfo, fileInfo).fetchJoin()
