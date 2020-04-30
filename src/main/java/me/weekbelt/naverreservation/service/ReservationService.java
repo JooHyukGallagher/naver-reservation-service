@@ -10,10 +10,7 @@ import me.weekbelt.naverreservation.domain.product.ProductRepository;
 import me.weekbelt.naverreservation.domain.reservationInfoPrice.*;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfoRepository;
-import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
-import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserCommentRepository;
 import me.weekbelt.naverreservation.util.TimeUtil;
-import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationInfoDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationPriceDto;
@@ -41,7 +38,7 @@ public class ReservationService {
                 .map(reservationInfo -> {
                     ReservationInfoDto reservationInfoDto = new ReservationInfoDto(reservationInfo);
                     List<ReservationInfoPrice> reservationInfoPriceList = reservationInfoPriceRepository
-                                    .findReservationInfoPriceByReservationInfoId(reservationInfo.getId());
+                            .findReservationInfoPriceByReservationInfoId(reservationInfo.getId());
                     reservationInfoDto.setTotalPrice(reservationInfo.createTotalPrice(reservationInfoPriceList));
                     return reservationInfoDto;
                 })
@@ -62,10 +59,10 @@ public class ReservationService {
         List<ReservationInfoPrice> reservationInfoPrices = reservationInfoPriceRepository.findReservationInfoPriceByReservationInfoId(reservationInfoId);
         List<ReservationPriceDto> reservationPriceDtos = reservationInfoPrices.stream()
                 .map((reservationInfoPrice) -> ReservationPriceDto.builder()
-                            .reservationInfoPriceId(reservationInfoPrice.getId())
-                            .reservationInfoId(reservationInfoPrice.getReservationInfo().getId())
-                            .productPriceId(reservationInfoPrice.getProductPrice().getId())
-                            .build())
+                        .reservationInfoPriceId(reservationInfoPrice.getId())
+                        .reservationInfoId(reservationInfoPrice.getReservationInfo().getId())
+                        .productPriceId(reservationInfoPrice.getProductPrice().getId())
+                        .build())
                 .collect(Collectors.toList());
 
         return ReservationResponse.builder()
@@ -85,40 +82,36 @@ public class ReservationService {
 
     @Transactional
     public Long reservation(ReservationParam reservationParam) {
-        // 엔티티 조회
+        ReservationInfo newReservationInfo = makeReservationInfo(reservationParam);
+        ReservationInfo savedReservationInfo = reservationInfoRepository.save(newReservationInfo);
+
+        List<ReservationInfoPrice> reservationInfoPrices = makeReservationInfoPrices(reservationParam, savedReservationInfo);
+        reservationInfoPriceRepository.saveAll(reservationInfoPrices);
+
+        return savedReservationInfo.getId();
+    }
+
+    private List<ReservationInfoPrice> makeReservationInfoPrices(ReservationParam reservationParam, ReservationInfo reservationInfo) {
+        return reservationParam.getPrices().stream()
+                .map((reservationPriceDto -> {
+                    ProductPrice productPrice = productPriceRepository.findById(reservationPriceDto.getProductPriceId())
+                            .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
+
+                    return ReservationInfoPrice.builder()
+                            .reservationInfo(reservationInfo)
+                            .productPrice(productPrice)
+                            .count(reservationPriceDto.getCount())
+                            .build();
+                })).collect(Collectors.toList());
+    }
+
+    private ReservationInfo makeReservationInfo(ReservationParam reservationParam) {
         Product product = productRepository.findById(reservationParam.getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 상품이 없습니다. productId=" + reservationParam.getProductId()));
         DisplayInfo displayInfo = displayInfoRepository.findById(reservationParam.getDisplayInfoId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 전시정보가 없습니다. displayInfoId=" + reservationParam.getDisplayInfoId()));
 
-        // ReservationInfo 생성
-        ReservationInfo reservationInfo = ReservationInfo.createReservationInfo(reservationParam, product, displayInfo);
-
-        // ReservationInfoPrice 생성
-        List<ReservationInfoPrice> reservationInfoPrices = createReservationInfoPrice(reservationParam, reservationInfo);
-
-        // 예약 정보 & 가격 저장
-        reservationInfoPriceRepository.saveAll(reservationInfoPrices);
-
-        return reservationInfo.getId();
-    }
-
-    private List<ReservationInfoPrice> createReservationInfoPrice(ReservationParam reservationParam, ReservationInfo reservationInfo){
-        return reservationParam.getPrices().stream()
-                .map((reservationPriceDto) -> {
-                    ProductPrice productPrice = productPriceRepository.findById(reservationPriceDto.getProductPriceId())
-                            .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
-
-                    ReservationInfoPrice reservationInfoPrice = ReservationInfoPrice.builder()
-                            .productPrice(productPrice)
-                            .count(reservationPriceDto.getCount())
-                            .build();
-
-                    reservationInfoPrice.setReservationInfo(reservationInfo);
-
-                    return reservationInfoPrice;
-                })
-                .collect(Collectors.toList());
+        return ReservationInfo.createReservationInfo(reservationParam, product, displayInfo);
     }
 
     @Transactional

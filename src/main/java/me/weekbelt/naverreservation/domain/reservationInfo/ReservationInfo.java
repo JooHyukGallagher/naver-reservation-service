@@ -40,7 +40,7 @@ public class ReservationInfo extends BaseTimeEntity {
     @OneToMany(mappedBy = "reservationInfo")
     private List<ReservationUserCommentImage> reservationUserCommentImages = new ArrayList<>();
 
-    @OneToMany(mappedBy = "reservationInfo")
+    @OneToMany(mappedBy = "reservationInfo", cascade = CascadeType.ALL)
     private List<ReservationInfoPrice> reservationInfoPrices = new ArrayList<>();
 
     @Column(nullable = false)
@@ -99,4 +99,5 @@ public class ReservationInfo extends BaseTimeEntity {
 
         return sum;
     }
+
 }

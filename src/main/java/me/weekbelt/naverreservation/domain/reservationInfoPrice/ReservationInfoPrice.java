@@ -20,7 +20,7 @@ public class ReservationInfoPrice {
     @JoinColumn(name = "product_price_id")
     private ProductPrice productPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_info_id")
     private ReservationInfo reservationInfo;
 
