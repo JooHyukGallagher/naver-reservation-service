@@ -38,7 +38,7 @@ public class ProductService {
         return displayInfoList.stream()
                 .map(displayInfo -> {
                     String saveFileName = getProductImageUrl(displayInfo.getProduct().getId());
-                    return ProductFactoryObject.toProductDto(displayInfo, saveFileName);
+                    return ProductFactoryObject.displayInfoToProductDto(displayInfo, saveFileName);
                 })
                 .collect(Collectors.toList());
     }

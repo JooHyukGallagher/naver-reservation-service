@@ -4,7 +4,7 @@ import me.weekbelt.naverreservation.domain.displayInfo.DisplayInfo;
 import me.weekbelt.naverreservation.web.dto.product.ProductDto;
 
 public class ProductFactoryObject {
-    public static ProductDto toProductDto(DisplayInfo displayInfo, String saveFileName) {
+    public static ProductDto displayInfoToProductDto(DisplayInfo displayInfo, String saveFileName) {
         return ProductDto.builder()
                 .displayInfoId(displayInfo.getId())
                 .productId(displayInfo.getProduct().getId())
