@@ -1,10 +1,12 @@
 package me.weekbelt.naverreservation.web.dto.product;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import me.weekbelt.naverreservation.domain.productPrice.ProductPrice;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
 @Data
 public class ProductPriceDto {
 

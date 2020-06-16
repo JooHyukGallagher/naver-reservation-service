@@ -1,16 +1,15 @@
 package me.weekbelt.naverreservation.web.dto.display;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductPriceDto;
 
 import java.util.List;
 
-@Getter
+
+@NoArgsConstructor @AllArgsConstructor
+@Getter @Setter
 @Builder
 public class DisplayInfoResponse {
     private DisplayInfoDto displayInfo;
@@ -19,6 +18,4 @@ public class DisplayInfoResponse {
     private List<CommentDto> comments;
     private Double averageScore;
     private List<ProductPriceDto> productPrices;
-
-
 }
