@@ -18,7 +18,7 @@ public class CategoryRepositoryImpl implements CategoryRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<CategoryDto> findCategoryDto() {
+    public List<CategoryDto> findCategoryDtos() {
         return queryFactory
                 .select(Projections.fields(CategoryDto.class,
                         category.id.as("categoryId"),
