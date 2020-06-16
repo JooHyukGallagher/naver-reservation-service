@@ -1,11 +1,10 @@
 package me.weekbelt.naverreservation.web.dto.product;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Getter @Setter
 public class ProductResponse {
     private Integer totalCount;
