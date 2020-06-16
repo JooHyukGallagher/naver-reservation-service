@@ -6,6 +6,7 @@ import me.weekbelt.naverreservation.service.ImageService;
 import me.weekbelt.naverreservation.web.dto.display.DisplayInfoImageDto;
 import me.weekbelt.naverreservation.web.dto.product.ProductImageDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationCommentImageDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.ws.Response;
 import java.io.File;
 import java.util.List;
 
@@ -23,7 +23,8 @@ import java.util.List;
 @RestController
 public class ImageApiController {
 
-    final static String CLASS_PATH = "c:/tmp/";
+    @Value("${property.image.url}")
+    private String CLASS_PATH;
 
     private final ImageService imageService;
 

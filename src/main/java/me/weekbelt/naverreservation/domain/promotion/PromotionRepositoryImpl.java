@@ -11,8 +11,8 @@ import java.util.List;
 
 import static me.weekbelt.naverreservation.domain.QFileInfo.*;
 import static me.weekbelt.naverreservation.domain.product.QProduct.*;
-import static me.weekbelt.naverreservation.domain.product.QProductImage.*;
-import static me.weekbelt.naverreservation.domain.product.QPromotion.*;
+import static me.weekbelt.naverreservation.domain.productImage.QProductImage.productImage;
+import static me.weekbelt.naverreservation.domain.promotion.QPromotion.promotion;
 
 @RequiredArgsConstructor
 public class PromotionRepositoryImpl implements PromotionRepositoryCustom{

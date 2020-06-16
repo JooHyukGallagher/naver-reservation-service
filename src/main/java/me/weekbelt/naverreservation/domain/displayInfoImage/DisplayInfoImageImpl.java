@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import static me.weekbelt.naverreservation.domain.QFileInfo.fileInfo;
 import static me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo.displayInfo;
-import static me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfoImage.displayInfoImage;
+import static me.weekbelt.naverreservation.domain.displayInfoImage.QDisplayInfoImage.displayInfoImage;
 
 @RequiredArgsConstructor
 public class DisplayInfoImageImpl implements DisplayInfoImageCustom{

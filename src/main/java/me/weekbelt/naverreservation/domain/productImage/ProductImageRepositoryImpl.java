@@ -9,7 +9,7 @@ import java.util.List;
 
 import static me.weekbelt.naverreservation.domain.QFileInfo.fileInfo;
 import static me.weekbelt.naverreservation.domain.product.QProduct.product;
-import static me.weekbelt.naverreservation.domain.product.QProductImage.*;
+import static me.weekbelt.naverreservation.domain.productImage.QProductImage.productImage;
 
 @RequiredArgsConstructor
 public class ProductImageRepositoryImpl implements ProductImageRepositoryCustom {

@@ -15,12 +15,10 @@ import static me.weekbelt.naverreservation.domain.product.QProduct.*;
 @RequiredArgsConstructor
 public class CategoryRepositoryImpl implements CategoryRepositoryCustom {
 
-    private final EntityManager em;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public List<CategoryDto> findCategoryDto() {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-
         return queryFactory
                 .select(Projections.fields(CategoryDto.class,
                         category.id.as("categoryId"),
@@ -30,7 +28,7 @@ public class CategoryRepositoryImpl implements CategoryRepositoryCustom {
                 .from(category)
                 .join(product).on(category.id.eq(product.category.id)).fetchJoin()
                 .join(displayInfo).on(product.id.eq(displayInfo.product.id)).fetchJoin()
-                .groupBy(category.name)
+                .groupBy(category.name, category.id)
                 .orderBy(category.id.asc())
                 .fetch();
     }

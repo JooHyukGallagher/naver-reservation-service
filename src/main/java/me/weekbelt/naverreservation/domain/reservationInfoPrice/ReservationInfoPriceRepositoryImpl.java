@@ -2,12 +2,13 @@ package me.weekbelt.naverreservation.domain.reservationInfoPrice;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import me.weekbelt.naverreservation.domain.reservationInfo.QReservationInfo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static me.weekbelt.naverreservation.domain.product.QProductPrice.productPrice;
-import static me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo.reservationInfo;
+import static me.weekbelt.naverreservation.domain.productPrice.QProductPrice.productPrice;
+import static me.weekbelt.naverreservation.domain.reservationInfo.QReservationInfo.*;
 import static me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfoPrice.reservationInfoPrice;
 
 @RequiredArgsConstructor

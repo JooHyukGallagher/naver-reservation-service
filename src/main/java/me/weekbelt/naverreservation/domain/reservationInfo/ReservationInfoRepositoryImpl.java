@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.category.QCategory;
 import me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo;
 import me.weekbelt.naverreservation.domain.product.QProduct;
-import me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
 import static me.weekbelt.naverreservation.domain.category.QCategory.category;
 import static me.weekbelt.naverreservation.domain.displayInfo.QDisplayInfo.displayInfo;
 import static me.weekbelt.naverreservation.domain.product.QProduct.product;
-import static me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo.reservationInfo;
+import static me.weekbelt.naverreservation.domain.reservationInfo.QReservationInfo.*;
 
 @RequiredArgsConstructor
 public class ReservationInfoRepositoryImpl implements ReservationInfoRepositoryCustom{

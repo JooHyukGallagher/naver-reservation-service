@@ -2,13 +2,14 @@ package me.weekbelt.naverreservation.domain.reservationUserComment;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import me.weekbelt.naverreservation.domain.reservationInfo.QReservationInfo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static me.weekbelt.naverreservation.domain.product.QProduct.*;
-import static me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationInfo.*;
-import static me.weekbelt.naverreservation.domain.reservationInfoPrice.QReservationUserComment.*;
+import static me.weekbelt.naverreservation.domain.reservationInfo.QReservationInfo.*;
+import static me.weekbelt.naverreservation.domain.reservationUserComment.QReservationUserComment.reservationUserComment;
 
 @RequiredArgsConstructor
 public class ReservationUserCommentRepositoryImpl implements ReservationUserCommentRepositoryCustom{
