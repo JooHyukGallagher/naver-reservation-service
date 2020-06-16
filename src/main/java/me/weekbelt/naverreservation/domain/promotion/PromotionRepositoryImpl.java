@@ -26,8 +26,7 @@ public class PromotionRepositoryImpl implements PromotionRepositoryCustom{
                 .select(Projections.fields(PromotionDto.class,
                         promotion.id,
                         promotion.product.id.as("productId"),
-                        fileInfo.saveFileName.as("productImageUrl")
-                        ))
+                        fileInfo.saveFileName.as("productImageUrl")))
                 .from(promotion)
                 .join(product).on(product.id.eq(promotion.product.id)).fetchJoin()
                 .join(productImage).on(product.id.eq(productImage.product.id)).fetchJoin()
