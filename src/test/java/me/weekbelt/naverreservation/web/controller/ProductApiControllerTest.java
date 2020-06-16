@@ -26,6 +26,9 @@ class ProductApiControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @DisplayName("전시 상품 목록을 4개씩 두번째 페이지 조회")
     @Test
     void getProducts() throws Exception {
@@ -39,7 +42,6 @@ class ProductApiControllerTest {
         MockHttpServletResponse response = mvcResult.getResponse();
         String content = response.getContentAsString(Charset.defaultCharset());
 
-        ObjectMapper objectMapper = new ObjectMapper();
         ProductResponse productResponse = objectMapper.readValue(content, ProductResponse.class);
 
         assertThat(productResponse.getTotalCount()).isEqualTo(10);
