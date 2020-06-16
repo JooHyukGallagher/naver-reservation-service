@@ -12,6 +12,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +37,7 @@ class ProductApiControllerTest {
                 .andReturn();
 
         MockHttpServletResponse response = mvcResult.getResponse();
-        String content = response.getContentAsString();
+        String content = response.getContentAsString(Charset.defaultCharset());
 
         ObjectMapper objectMapper = new ObjectMapper();
         ProductResponse productResponse = objectMapper.readValue(content, ProductResponse.class);
