@@ -5,5 +5,5 @@ import me.weekbelt.naverreservation.web.dto.promotion.PromotionDto;
 import java.util.List;
 
 public interface PromotionRepositoryCustom {
-    List<PromotionDto> findPromotionDto();
+    List<PromotionDto> findPromotionDtos();
 }

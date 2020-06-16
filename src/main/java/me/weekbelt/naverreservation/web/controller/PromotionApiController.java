@@ -1,8 +1,7 @@
 package me.weekbelt.naverreservation.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.weekbelt.naverreservation.service.ProductService;
-import me.weekbelt.naverreservation.service.PromotionService;
+import me.weekbelt.naverreservation.domain.promotion.PromotionRepository;
 import me.weekbelt.naverreservation.web.dto.promotion.PromotionResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class PromotionApiController {
 
-    private final PromotionService promotionService;
+    private final PromotionRepository promotionRepository;
 
     @GetMapping("/promotions")
     private PromotionResponse getPromotionResponse(){
-        return new PromotionResponse(promotionService.findPromotionDto());
+        return PromotionResponse.builder()
+                .items(promotionRepository.findPromotionDtos())
+                .build();
     }
 }
