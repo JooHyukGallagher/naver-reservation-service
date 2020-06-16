@@ -13,7 +13,6 @@ import static me.weekbelt.naverreservation.domain.displayInfoImage.QDisplayInfoI
 @RequiredArgsConstructor
 public class DisplayInfoImageImpl implements DisplayInfoImageCustom{
 
-    private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
     @Override

@@ -55,7 +55,7 @@ public class DisplayInfoDto {
 
         }
 
-        Category category = displayInfo.getProduct().getCategory();
+        Category category = product.getCategory();
         if (category != null) {
             this.categoryId = category.getId();
             this.categoryName = category.getName();

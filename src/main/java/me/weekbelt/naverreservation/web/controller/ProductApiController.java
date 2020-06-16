@@ -5,7 +5,6 @@ import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.service.CommentService;
 import me.weekbelt.naverreservation.service.DisplayInfoService;
 import me.weekbelt.naverreservation.service.ProductService;
-import me.weekbelt.naverreservation.service.ReservationService;
 import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.display.DisplayInfoDto;
 import me.weekbelt.naverreservation.web.dto.display.DisplayInfoImageDto;
@@ -43,8 +42,14 @@ public class ProductApiController {
 
     @GetMapping("/products/{displayInfoId}")
     public DisplayInfoResponse getDisplayInfoResponse(@PathVariable Long displayInfoId, HttpSession httpSession) {
+        DisplayInfoResponse displayInfoResponse = makeDisplayInfoResponse(displayInfoId);
+        httpSession.setAttribute("displayInfoResponse", displayInfoResponse);
+        return displayInfoResponse;
+    }
+
+    private DisplayInfoResponse makeDisplayInfoResponse(@PathVariable Long displayInfoId) {
         DisplayInfoDto displayInfo = displayInfoService.findDisplayInfoDto(displayInfoId);
-        DisplayInfoImageDto displayInfoImage = displayInfoService.findDisplayInfoImageDTo(displayInfoId);
+        DisplayInfoImageDto displayInfoImage = displayInfoService.findDisplayInfoImageDto(displayInfoId);
 
         Long productId = displayInfo.getProductId();
         List<ProductImageDto> productImages = productService.findProductImageDto(productId, ImageType.ma);
@@ -52,7 +57,7 @@ public class ProductApiController {
         List<ProductPriceDto> productPrices = productService.findProductPriceDto(productId);
         Double averageScore = commentService.findAverageScore(productId);
 
-        DisplayInfoResponse displayInfoResponse = DisplayInfoResponse.builder()
+        return DisplayInfoResponse.builder()
                 .displayInfo(displayInfo)
                 .displayInfoImage(displayInfoImage)
                 .productImages(productImages)
@@ -60,10 +65,6 @@ public class ProductApiController {
                 .productPrices(productPrices)
                 .averageScore(averageScore)
                 .build();
-
-        httpSession.setAttribute("displayInfoResponse", displayInfoResponse);
-
-        return displayInfoResponse;
     }
 
 }

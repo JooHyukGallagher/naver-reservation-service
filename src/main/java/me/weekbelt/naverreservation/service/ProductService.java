@@ -61,7 +61,7 @@ public class ProductService {
     }
 
     public List<ProductPriceDto> findProductPriceDto(Long productId) {
-        List<ProductPrice> productPrices = productPriceRepository.findProductPriceByProductIdOrderByIdDesc(productId);
+        List<ProductPrice> productPrices = productPriceRepository.findProductPricesByProductIdOrderByIdDesc(productId);
 
         return productPrices.stream()
                 .map(ProductPriceDto::new)

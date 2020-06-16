@@ -33,7 +33,7 @@ public class CommentService {
 
 
     public List<CommentDto> findCommentDto(Long productId) {
-        List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentByProductId(productId);
+        List<ReservationUserComment> reservationUserComments = reservationUserCommentRepository.findReservationUserCommentsByProductId(productId);
 
         return reservationUserComments.stream()
                 .map(CommentDto::new)

@@ -18,7 +18,7 @@ public class ReservationUserCommentRepositoryImpl implements ReservationUserComm
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<ReservationUserComment> findReservationUserCommentByProductId(Long productId) {
+    public List<ReservationUserComment> findReservationUserCommentsByProductId(Long productId) {
         return queryFactory
                 .selectFrom(reservationUserComment)
                 .join(reservationUserComment.reservationInfo, reservationInfo).fetchJoin()

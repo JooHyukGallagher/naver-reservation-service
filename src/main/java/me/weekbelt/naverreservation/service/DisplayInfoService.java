@@ -22,7 +22,7 @@ public class DisplayInfoService {
         return new DisplayInfoDto(displayInfo);
     }
 
-    public DisplayInfoImageDto findDisplayInfoImageDTo(Long displayInfoId) {
+    public DisplayInfoImageDto findDisplayInfoImageDto(Long displayInfoId) {
         DisplayInfoImage displayInfoImage = displayInfoImageRepository.findDisplayInfoImageByDisplayInfoId(displayInfoId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 이미지가 없습니다. id=" + displayInfoId));
 
