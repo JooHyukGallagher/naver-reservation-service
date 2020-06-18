@@ -23,7 +23,8 @@ import java.util.List;
 @Getter
 public class ReservationInfo extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -72,14 +73,16 @@ public class ReservationInfo extends BaseTimeEntity {
     }
 
     //== 생성 메서드==//
-    public static ReservationInfo createReservationInfo(ReservationParam reservationParam, Product product, DisplayInfo displayInfo) {
+    public static ReservationInfo createReservationInfo(ReservationParam reservationParam,
+                                                        Product product, DisplayInfo displayInfo) {
         return ReservationInfo.builder()
                 .product(product)
                 .displayInfo(displayInfo)
                 .reservationName(reservationParam.getReservationName())
                 .reservationTel(reservationParam.getReservationTelephone())
                 .reservationEmail(reservationParam.getReservationEmail())
-                .reservationDate(TimeUtil.convertStringToLocalDateTime(reservationParam.getReservationYearMonthDay()))
+                .reservationDate(TimeUtil.
+                        convertStringToLocalDateTime(reservationParam.getReservationYearMonthDay()))
                 .build();
     }
 
@@ -88,7 +91,7 @@ public class ReservationInfo extends BaseTimeEntity {
         this.cancelFlag = true;
     }
 
-    public Integer createTotalPrice(List<ReservationInfoPrice> reservationInfoPriceList){
+    public Integer createTotalPrice(List<ReservationInfoPrice> reservationInfoPriceList) {
         int sum = 0;
 
         for (ReservationInfoPrice reservationInfoPrice : reservationInfoPriceList) {

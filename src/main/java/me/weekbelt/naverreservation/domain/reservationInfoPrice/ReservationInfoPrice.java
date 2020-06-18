@@ -38,4 +38,5 @@ public class ReservationInfoPrice {
         this.reservationInfo = reservationInfo;
         reservationInfo.getReservationInfoPrices().add(this);
     }
+
 }

@@ -56,12 +56,14 @@ public class ReservationService {
         ReservationInfo reservationInfo = reservationInfoRepository.findById(reservationInfoId)
                 .orElseThrow(() -> new IllegalArgumentException("예약정보가 없습니다. reservationInfoId=" + reservationInfoId));
 
-        List<ReservationInfoPrice> reservationInfoPrices = reservationInfoPriceRepository.findReservationInfoPriceByReservationInfoId(reservationInfoId);
+        List<ReservationInfoPrice> reservationInfoPrices = reservationInfoPriceRepository
+                .findReservationInfoPriceByReservationInfoId(reservationInfoId);
         List<ReservationPriceDto> reservationPriceDtos = reservationInfoPrices.stream()
                 .map((reservationInfoPrice) -> ReservationPriceDto.builder()
                         .reservationInfoPriceId(reservationInfoPrice.getId())
                         .reservationInfoId(reservationInfoPrice.getReservationInfo().getId())
                         .productPriceId(reservationInfoPrice.getProductPrice().getId())
+                        .count(reservationInfoPrice.getCount())
                         .build())
                 .collect(Collectors.toList());
 
@@ -82,27 +84,14 @@ public class ReservationService {
 
     @Transactional
     public Long reservation(ReservationParam reservationParam) {
-        ReservationInfo newReservationInfo = makeReservationInfo(reservationParam);
-        ReservationInfo savedReservationInfo = reservationInfoRepository.save(newReservationInfo);
+        ReservationInfo savedReservationInfo = reservationInfoRepository
+                .save(makeReservationInfo(reservationParam));
 
-        List<ReservationInfoPrice> reservationInfoPrices = makeReservationInfoPrices(reservationParam, savedReservationInfo);
+        List<ReservationInfoPrice> reservationInfoPrices =
+                makeReservationInfoPrices(reservationParam, savedReservationInfo);
         reservationInfoPriceRepository.saveAll(reservationInfoPrices);
 
         return savedReservationInfo.getId();
-    }
-
-    private List<ReservationInfoPrice> makeReservationInfoPrices(ReservationParam reservationParam, ReservationInfo reservationInfo) {
-        return reservationParam.getPrices().stream()
-                .map((reservationPriceDto -> {
-                    ProductPrice productPrice = productPriceRepository.findById(reservationPriceDto.getProductPriceId())
-                            .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
-
-                    return ReservationInfoPrice.builder()
-                            .reservationInfo(reservationInfo)
-                            .productPrice(productPrice)
-                            .count(reservationPriceDto.getCount())
-                            .build();
-                })).collect(Collectors.toList());
     }
 
     private ReservationInfo makeReservationInfo(ReservationParam reservationParam) {
@@ -113,6 +102,23 @@ public class ReservationService {
 
         return ReservationInfo.createReservationInfo(reservationParam, product, displayInfo);
     }
+
+    private List<ReservationInfoPrice> makeReservationInfoPrices(ReservationParam reservationParam,
+                                                                 ReservationInfo reservationInfo) {
+        return reservationParam.getPrices().stream()
+                .map((reservationPriceDto -> {
+                    ProductPrice productPrice = productPriceRepository
+                            .findById(reservationPriceDto.getProductPriceId())
+                            .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
+
+                    return ReservationInfoPrice.builder()
+                            .reservationInfo(reservationInfo)
+                            .productPrice(productPrice)
+                            .count(reservationPriceDto.getCount())
+                            .build();
+                })).collect(Collectors.toList());
+    }
+
 
     @Transactional
     public void cancelReservation(Long reservationInfoId) {
