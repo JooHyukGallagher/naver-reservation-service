@@ -23,7 +23,7 @@ public class ReservationApiController {
     private final CommentService commentService;
 
     @GetMapping("/reservations")
-    public ReservationInfoResponse reservationInfo(@RequestParam String reservationEmail){
+    public ReservationInfoResponse reservationInfo(@RequestParam String reservationEmail) {
         List<ReservationInfoDto> reservations = reservationService.findReservationInfoDto(reservationEmail);
 
         return ReservationInfoResponse.builder()
@@ -33,15 +33,20 @@ public class ReservationApiController {
     }
 
     @PostMapping("/reservations")
-    public ReservationResponse createReservation(@RequestBody ReservationParam reservationParam){
+    public ReservationResponse createReservation(@RequestBody ReservationParam reservationParam) {
         Long reservationInfoId = reservationService.reservation(reservationParam);
         return reservationService.findReservationResponse(reservationInfoId);
     }
 
     @PutMapping("/reservations/{reservationInfoId}")
-    public ReservationResponse cancelReservation(@PathVariable Long reservationInfoId){
+    public ReservationResponse cancelReservation(@PathVariable Long reservationInfoId) {
         reservationService.cancelReservation(reservationInfoId);
         return reservationService.findReservationResponse(reservationInfoId);
+    }
+
+    @GetMapping("/reservationInfo")
+    public ReservationInfoDto reservationInfoByReservationInfoId(Long reservationInfoId) {
+        return reservationService.findReservationInfoDto(reservationInfoId);
     }
 
     @PostMapping("/reservations/{reservationInfoId}/comments")
@@ -49,7 +54,7 @@ public class ReservationApiController {
                                          @RequestParam(required = false) MultipartFile commentImage,
                                          @RequestParam String comment,
                                          @RequestParam Long productId,
-                                         @RequestParam Integer score){
+                                         @RequestParam Integer score) {
         Long commentId = commentService.saveComment(commentImage, comment, productId, reservationInfoId, score);
         return commentService.findCommentResponse(commentId);
     }

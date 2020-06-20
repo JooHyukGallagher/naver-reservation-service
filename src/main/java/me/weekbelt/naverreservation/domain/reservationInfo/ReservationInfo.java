@@ -92,15 +92,10 @@ public class ReservationInfo extends BaseTimeEntity {
     }
 
     public Integer createTotalPrice(List<ReservationInfoPrice> reservationInfoPriceList) {
-        int sum = 0;
-
-        for (ReservationInfoPrice reservationInfoPrice : reservationInfoPriceList) {
-            int count = reservationInfoPrice.getCount();
-            int price = reservationInfoPrice.getProductPrice().getPrice();
-            sum += count * price;
-        }
-
-        return sum;
+        return reservationInfoPrices.stream()
+                .mapToInt(reservationInfoPrice ->
+                        reservationInfoPrice.getCount() * reservationInfoPrice.getProductPrice().getPrice())
+                .sum();
     }
 
 }

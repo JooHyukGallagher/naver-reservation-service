@@ -17,7 +17,6 @@ import static me.weekbelt.naverreservation.domain.reservationInfo.QReservationIn
 @RequiredArgsConstructor
 public class ReservationInfoRepositoryImpl implements ReservationInfoRepositoryCustom{
 
-    private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
     @Override
@@ -29,5 +28,16 @@ public class ReservationInfoRepositoryImpl implements ReservationInfoRepositoryC
                 .join(product.category, category).fetchJoin()
                 .where(reservationInfo.reservationEmail.eq(reservationEmail))
                 .fetch();
+    }
+
+    @Override
+    public ReservationInfo findReservationInfoByReservationInfoId(Long reservationInfoId) {
+        return queryFactory
+                .selectFrom(reservationInfo)
+                .join(reservationInfo.product, product).fetchJoin()
+                .join(reservationInfo.displayInfo, displayInfo).fetchJoin()
+                .join(product.category, category).fetchJoin()
+                .where(reservationInfo.id.eq(reservationInfoId))
+                .fetchOne();
     }
 }

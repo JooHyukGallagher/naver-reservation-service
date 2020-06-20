@@ -11,6 +11,7 @@ import me.weekbelt.naverreservation.domain.reservationInfoPrice.*;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfoRepository;
 import me.weekbelt.naverreservation.util.TimeUtil;
+import me.weekbelt.naverreservation.util.factory.ReservationFactory;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationInfoDto;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationParam;
 import me.weekbelt.naverreservation.web.dto.reservation.ReservationPriceDto;
@@ -32,24 +33,31 @@ public class ReservationService {
     private final ProductRepository productRepository;
 
     public List<ReservationInfoDto> findReservationInfoDto(String reservationEmail) {
-        List<ReservationInfo> reservationInfos = reservationInfoRepository.findReservationInfoByReservationEmail(reservationEmail);
+        List<ReservationInfo> reservationInfos = reservationInfoRepository
+                .findReservationInfoByReservationEmail(reservationEmail);
 
         return reservationInfos.stream()
-                .map(reservationInfo -> {
-                    ReservationInfoDto reservationInfoDto = new ReservationInfoDto(reservationInfo);
-                    List<ReservationInfoPrice> reservationInfoPriceList = reservationInfoPriceRepository
-                            .findReservationInfoPriceByReservationInfoId(reservationInfo.getId());
-                    reservationInfoDto.setTotalPrice(reservationInfo.createTotalPrice(reservationInfoPriceList));
-                    return reservationInfoDto;
-                })
+                .map(reservationInfo -> getReservationInfoDto(reservationInfo))
                 .collect(Collectors.toList());
     }
 
+    private ReservationInfoDto getReservationInfoDto(ReservationInfo reservationInfo) {
+        ReservationInfoDto reservationInfoDto = new ReservationInfoDto(reservationInfo);
+        List<ReservationInfoPrice> reservationInfoPriceList = reservationInfoPriceRepository
+                .findReservationInfoPriceByReservationInfoId(reservationInfo.getId());
+        reservationInfoDto.setTotalPrice(reservationInfo.createTotalPrice(reservationInfoPriceList));
+        return reservationInfoDto;
+    }
 
     public ReservationInfoDto findReservationInfoDto(Long reservationInfoId) {
-        ReservationInfo reservationInfo = reservationInfoRepository.findReservationInfoByReservationInfoId(reservationInfoId);
-
-        return new ReservationInfoDto(reservationInfo);
+        ReservationInfo reservationInfo = reservationInfoRepository
+                .findReservationInfoByReservationInfoId(reservationInfoId);
+        Integer totalPrice = reservationInfo.createTotalPrice(reservationInfoPriceRepository
+                .findReservationInfoPriceByReservationInfoId(reservationInfoId));
+        
+        ReservationInfoDto reservationInfoDto = new ReservationInfoDto(reservationInfo);
+        reservationInfoDto.setTotalPrice(totalPrice);
+        return reservationInfoDto;
     }
 
     public ReservationResponse findReservationResponse(Long reservationInfoId) {
@@ -59,27 +67,10 @@ public class ReservationService {
         List<ReservationInfoPrice> reservationInfoPrices = reservationInfoPriceRepository
                 .findReservationInfoPriceByReservationInfoId(reservationInfoId);
         List<ReservationPriceDto> reservationPriceDtos = reservationInfoPrices.stream()
-                .map((reservationInfoPrice) -> ReservationPriceDto.builder()
-                        .reservationInfoPriceId(reservationInfoPrice.getId())
-                        .reservationInfoId(reservationInfoPrice.getReservationInfo().getId())
-                        .productPriceId(reservationInfoPrice.getProductPrice().getId())
-                        .count(reservationInfoPrice.getCount())
-                        .build())
+                .map((reservationInfoPrice) -> ReservationFactory.getReservationPriceDto(reservationInfoPrice))
                 .collect(Collectors.toList());
 
-        return ReservationResponse.builder()
-                .reservationInfoId(reservationInfo.getId())
-                .productId(reservationInfo.getProduct().getId())
-                .displayInfoId(reservationInfo.getDisplayInfo().getId())
-                .reservationName(reservationInfo.getReservationName())
-                .reservationTelephone(reservationInfo.getReservationTel())
-                .reservationEmail(reservationInfo.getReservationEmail())
-                .cancelYn(reservationInfo.isCancelFlag())
-                .reservationDate(TimeUtil.convertLocalDateTimeToString(reservationInfo.getReservationDate()))
-                .createDate(reservationInfo.getCreateDate())
-                .modifyDate(reservationInfo.getModifyDate())
-                .prices(reservationPriceDtos)
-                .build();
+        return ReservationFactory.getReservationResponse(reservationInfo, reservationPriceDtos);
     }
 
     @Transactional
@@ -106,19 +97,18 @@ public class ReservationService {
     private List<ReservationInfoPrice> makeReservationInfoPrices(ReservationParam reservationParam,
                                                                  ReservationInfo reservationInfo) {
         return reservationParam.getPrices().stream()
-                .map((reservationPriceDto -> {
-                    ProductPrice productPrice = productPriceRepository
-                            .findById(reservationPriceDto.getProductPriceId())
-                            .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
-
-                    return ReservationInfoPrice.builder()
-                            .reservationInfo(reservationInfo)
-                            .productPrice(productPrice)
-                            .count(reservationPriceDto.getCount())
-                            .build();
-                })).collect(Collectors.toList());
+                .map((reservationPriceDto -> getReservationInfoPrice(reservationInfo, reservationPriceDto)))
+                .collect(Collectors.toList());
     }
 
+    private ReservationInfoPrice getReservationInfoPrice(ReservationInfo reservationInfo, ReservationPriceDto reservationPriceDto) {
+        ProductPrice productPrice = productPriceRepository
+                .findById(reservationPriceDto.getProductPriceId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 상품가격이 없습니다. productPriceId=" + reservationPriceDto.getProductPriceId()));
+
+        return ReservationFactory
+                .getReservationInfoPrice(reservationInfo, reservationPriceDto, productPrice);
+    }
 
     @Transactional
     public void cancelReservation(Long reservationInfoId) {
