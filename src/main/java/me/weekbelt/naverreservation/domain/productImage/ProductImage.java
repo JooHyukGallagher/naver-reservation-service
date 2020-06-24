@@ -2,7 +2,7 @@ package me.weekbelt.naverreservation.domain.productImage;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.weekbelt.naverreservation.domain.FileInfo;
+import me.weekbelt.naverreservation.domain.fileInfo.FileInfo;
 import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.domain.product.Product;
 
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class ProductImage {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

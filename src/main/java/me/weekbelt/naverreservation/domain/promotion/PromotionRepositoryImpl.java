@@ -4,12 +4,13 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
+import me.weekbelt.naverreservation.domain.fileInfo.QFileInfo;
 import me.weekbelt.naverreservation.web.dto.promotion.PromotionDto;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static me.weekbelt.naverreservation.domain.QFileInfo.*;
+import static me.weekbelt.naverreservation.domain.fileInfo.QFileInfo.*;
 import static me.weekbelt.naverreservation.domain.product.QProduct.*;
 import static me.weekbelt.naverreservation.domain.productImage.QProductImage.productImage;
 import static me.weekbelt.naverreservation.domain.promotion.QPromotion.promotion;

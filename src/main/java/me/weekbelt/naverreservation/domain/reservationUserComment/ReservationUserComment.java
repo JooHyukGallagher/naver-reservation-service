@@ -18,7 +18,7 @@ import java.util.List;
 @Getter @Setter
 public class ReservationUserComment extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,7 +1,8 @@
 package me.weekbelt.naverreservation.service;
 
 import lombok.RequiredArgsConstructor;
-import me.weekbelt.naverreservation.domain.FileInfo;
+import me.weekbelt.naverreservation.domain.fileInfo.FileInfo;
+import me.weekbelt.naverreservation.domain.fileInfo.FileInfoRepository;
 import me.weekbelt.naverreservation.domain.product.Product;
 import me.weekbelt.naverreservation.domain.product.ProductRepository;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
@@ -13,6 +14,7 @@ import me.weekbelt.naverreservation.domain.reservationUserCommentImage.Reservati
 import me.weekbelt.naverreservation.util.ImageFile;
 import me.weekbelt.naverreservation.web.dto.comment.CommentDto;
 import me.weekbelt.naverreservation.web.dto.comment.CommentResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,13 +25,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class CommentService {
-    private static final String PATH = "c:/tmp/";
+//    private static final String PATH = "c:/tmp/";
+
+    @Value("${property.image.url}")
+    private String PATH;
     private static final String COMMENT_IMAGE = "review_img/";
 
     private final ReservationUserCommentRepository reservationUserCommentRepository;
     private final ReservationUserCommentImageRepository reservationUserCommentImageRepository;
     private final ProductRepository productRepository;
     private final ReservationInfoRepository reservationInfoRepository;
+    private final FileInfoRepository fileInfoRepository;
 
 
     public List<CommentDto> findCommentDto(Long productId) {
@@ -68,6 +74,9 @@ public class CommentService {
         if (commentImage == null) {
             return reservationUserCommentRepository.save(reservationUserComment).getId();
         } else {
+
+            ReservationUserComment savedReservationUserComment = reservationUserCommentRepository.save(reservationUserComment);
+
             String fileName = ImageFile.makeInherenceFile(commentImage.getOriginalFilename());
             String saveFileName = COMMENT_IMAGE + fileName;
 
@@ -81,11 +90,13 @@ public class CommentService {
                     .contentType(commentImage.getContentType())
                     .build();
 
+            FileInfo savedFileInfo = fileInfoRepository.save(fileInfo);
+
             // ReservationUserCommentImage 엔티티 생성
             ReservationUserCommentImage reservationUserCommentImage = ReservationUserCommentImage.builder()
                     .reservationInfo(reservationInfo)
-                    .reservationUserComment(reservationUserComment)
-                    .fileInfo(fileInfo)
+                    .reservationUserComment(savedReservationUserComment)
+                    .fileInfo(savedFileInfo)
                     .build();
 
             return reservationUserCommentImageRepository.save(reservationUserCommentImage).getReservationUserComment().getId();

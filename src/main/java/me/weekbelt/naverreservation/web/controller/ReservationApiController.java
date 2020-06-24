@@ -51,11 +51,12 @@ public class ReservationApiController {
 
     @PostMapping("/reservations/{reservationInfoId}/comments")
     public CommentResponse createComment(@PathVariable Long reservationInfoId,
-                                         @RequestParam(required = false) MultipartFile commentImage,
+                                         @RequestParam(required = false) MultipartFile commentReviewImage,
                                          @RequestParam String comment,
                                          @RequestParam Long productId,
                                          @RequestParam Integer score) {
-        Long commentId = commentService.saveComment(commentImage, comment, productId, reservationInfoId, score);
+        Long commentId = commentService
+                .saveComment(commentReviewImage, comment, productId, reservationInfoId, score);
         return commentService.findCommentResponse(commentId);
     }
 

@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import me.weekbelt.naverreservation.domain.FileInfo;
+import me.weekbelt.naverreservation.domain.fileInfo.FileInfo;
 import me.weekbelt.naverreservation.domain.reservationInfo.ReservationInfo;
 import me.weekbelt.naverreservation.domain.reservationUserComment.ReservationUserComment;
 
@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class ReservationUserCommentImage {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

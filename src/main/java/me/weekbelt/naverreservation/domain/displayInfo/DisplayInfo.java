@@ -14,7 +14,7 @@ import java.util.List;
 @Getter @Setter
 public class DisplayInfo extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class Promotion {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

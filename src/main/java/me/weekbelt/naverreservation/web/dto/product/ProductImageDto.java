@@ -3,7 +3,7 @@ package me.weekbelt.naverreservation.web.dto.product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.weekbelt.naverreservation.domain.FileInfo;
+import me.weekbelt.naverreservation.domain.fileInfo.FileInfo;
 import me.weekbelt.naverreservation.domain.ImageType;
 import me.weekbelt.naverreservation.domain.productImage.ProductImage;
 

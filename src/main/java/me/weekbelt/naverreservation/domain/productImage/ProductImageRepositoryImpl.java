@@ -3,11 +3,12 @@ package me.weekbelt.naverreservation.domain.productImage;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.naverreservation.domain.ImageType;
+import me.weekbelt.naverreservation.domain.fileInfo.QFileInfo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static me.weekbelt.naverreservation.domain.QFileInfo.fileInfo;
+import static me.weekbelt.naverreservation.domain.fileInfo.QFileInfo.*;
 import static me.weekbelt.naverreservation.domain.product.QProduct.product;
 import static me.weekbelt.naverreservation.domain.productImage.QProductImage.productImage;
 
