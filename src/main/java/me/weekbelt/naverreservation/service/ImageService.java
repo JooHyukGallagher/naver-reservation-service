@@ -40,7 +40,7 @@ public class ImageService {
     }
 
     public ReservationCommentImageDto getReservationCommentImageDto(Long imageId) {
-        ReservationUserCommentImage reservationUserCommentImage = reservationUserCommentImageRepository.findById(imageId)
+        ReservationUserCommentImage reservationUserCommentImage = reservationUserCommentImageRepository.findByReservationUserCommentId(imageId)
                 .orElseThrow(() -> new IllegalArgumentException("리뷰 이미지가 없습니다. id=" + imageId));
 
         return new ReservationCommentImageDto(reservationUserCommentImage);

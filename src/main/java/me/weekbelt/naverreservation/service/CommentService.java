@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class CommentService {
-//    private static final String PATH = "c:/tmp/";
 
     @Value("${property.image.url}")
     private String PATH;
