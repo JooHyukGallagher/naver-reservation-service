@@ -23,8 +23,10 @@
 
 <br>
 
+<p float="left">
 <img width="250" height="763" alt="상세페이지1" src="https://user-images.githubusercontent.com/26062056/93197437-983c7a00-f786-11ea-9fd7-5896efb8772c.png">
 <img width="250" heigth="763" alt="상세페이지2" src="https://user-images.githubusercontent.com/26062056/93197447-9c689780-f786-11ea-9106-138ee1e39efc.png">
+</p>
 
 - 상품을 클릭한 후 상품상세정보 페이지로 예매자의 리뷰와 평점을 볼 수 있고 상품 상세 정보와 위치를 볼 수 있다.
 - 예매하기 버튼을 클릭하면 상품을 예매하기 위한 페이지로 이동한다.
@@ -34,8 +36,10 @@
 
 <br>
 
+<p>
 <img width="250" height="763" alt="예매하기1" src="https://user-images.githubusercontent.com/26062056/93197454-9d99c480-f786-11ea-8aec-083743a980d1.png">
 <img width="250" height="763" alt="예매하기2" src="https://user-images.githubusercontent.com/26062056/93197457-9ecaf180-f786-11ea-835c-e70599fdd678.png">
+</p>
 
 - 상품 상세정보 페이지에서 예매하기 버튼을 클릭하면 이동하는 페이지다.
 - 티켓 개수를 선택하고 예매자의 정보를 입력하여 상품을 예매한다.
