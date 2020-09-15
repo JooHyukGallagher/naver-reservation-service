@@ -1,0 +1,2 @@
+1592462809199|110|rollback|connection 24|url jdbc:mysql://localhost:3306/naver_reservation?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC||
+1592463956850|108|rollback|connection 43|url jdbc:mysql://localhost:3306/naver_reservation?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC||
